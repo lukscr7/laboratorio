@@ -15,7 +15,40 @@ class Usuario{
     private $correo;
     private $permisos;
     private $foto_perfil;
-    private $bandera;  // DARIO APRENDIO A USAR EL GITHUB WIIII!!!
+    private $bandera;
+
+    /**
+     * Usuario constructor.
+     * @param $user_id
+     */
+    public function __construct($user_id)
+    {
+        $res = $this->dat_usuario($user_id);
+
+        $this->user_id = $res["user_id"];
+        $this->pass = $res["pass"];
+        $this->nom_us = $res["nom_us"];
+        $this->ape_us = $res["ape_us"];
+        $this->correo = $res["correo"];
+        $this->permisos = $res["permisos"];
+        $this->foto_perfil = $res["foto_perfil"];
+        $this->bandera = $res["bandera"];
+    }
+
+
+    public function dat_usuario($user_id){
+        global $baseDatos;
+        $sql = "SELECT * FROM usuarios WHERE user_id = $user_id";    //PONER COMO SQL
+        $resultado = $baseDatos->query($sql);
+        return $resultado->fetch_assoc();
+    }
+
+    public function all_usuarios(){
+        global $baseDatos;
+        $sql = "SELECT * FROM usuarios";
+        $resultado = $baseDatos->query($sql);
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    }
 
     /**
      * @return mixed
@@ -143,21 +176,6 @@ class Usuario{
     public function setBandera($bandera)
     {
         $this->bandera = $bandera;
-    }
-        
-    
-    public function dat_usuario($user_id){
-        global $baseDatos;
-        $sql = "SELECT * FROM usuarios WHERE user_id = $user_id";    //PONER COMO SQL
-        $resultado = $baseDatos->query($sql);
-        return $resultado->fetch_assoc();
-    }
-
-    public function all_usuarios(){
-        global $baseDatos;
-        $sql = "SELECT * FROM usuarios";
-        $resultado = $baseDatos->query($sql);
-        return $resultado->fetch_all(MYSQLI_ASSOC);
     }
 
 }

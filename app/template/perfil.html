@@ -1,0 +1,230 @@
+<!-- Cabecera -->
+<header>
+    <div class="row margen">
+        <div class="col-lg-1 col-md-1 eliminar">
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 contenedor-per">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="centrado">
+                    <img src="../../recursos/imagen/Dj-Mouse-1920x1200.jpg" class="img-perfil centrado"
+                         alt="foto de perfil">
+
+
+                    <!-- ESTRELLAS SOLO PARA CONDUCTOR -->
+                    <!-- START BLOCK : estrella_conductor -->
+                    <input id="input-7-xs" class="rating rating-loading" value="0" data-min="0" data-max="5"
+                           data-step="0.5" data-size="xs" data-show-clear="false" data-show-caption="false"/>
+                    <!-- END BLOCK : estrella_conductor -->
+                    <!-- FIN ESTRELLAS SOLO PARA CONDUCTOR -->
+
+
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                <h1 class="text-centrado">{nombre_usuario}</h1>
+                <h1 class=" text-centrado">{tipo_usuario}</h1>
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                <h4 class="text-centrado">{descripcion}</h4>
+            </div>
+            <div class="col-xs-12 text-centrado">
+
+                <!--BOTÓN EDITAR PERFIL-->
+                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#editarperfil">Editar
+                    Perfil
+                </button>
+                <!--FIN BOTÓN EDITAR PERFIL-->
+
+                <!--BOTÓN LUGARES FAVORITOS-->
+                <!-- START BLOCK : boton.lugar.favoritos -->
+                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#lugarfavorito">
+                    Lugares Favoritos
+                </button>
+                <!-- END BLOCK : boton.lugar.favoritos -->
+                <!--FIN BOTÓN LUGARES FAVORITOS-->
+
+
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- Modal Editar Perfil-->
+<div class="modal fade" id="editarperfil" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Editar Perfil</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nombre" class="control-label">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" onchange="validar_texto(this)"
+                           placeholder="Nombre Aquí">
+                </div>
+                <div class="form-group">
+                    <label for="apellido" class="control-label">Apellido:</label>
+                    <input type="text" class="form-control" id="apellido" onchange="validar_texto(this)"
+                           placeholder="Apellido Aquí">
+                </div>
+                <div id="contenedor_email" class="form-group">
+                    <label for="email" class="control-label">E-mail:</label>
+                    <input type="email" class="form-control" id="email" onchange="validar_email()"
+                           placeholder="ejemplo@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea class="form-control" rows="3" maxlength="250" id="descripcion"
+                              placeholder="Comentario"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Foto de Perfil:</label>
+                    <input id="foto" name="imagen[]" accept="image/*" type="file" class="file">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Fin Modal -->
+
+                                <!-- START BLOCK : modal.lugar.favoritos -->
+<!-- Modal Lugares Favoritos-->
+<div class="modal fade" id="lugarfavorito" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Lugares Favoritos</h2>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="form-group">
+                    <label for="direccion" class="control-label">Lugares:</label>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <!-- Agregar un boton mas para ir a Google Maps con la direccion -->
+                            <button type="button" class="close">&times;</button>
+                            <h4 class="list-group-item-heading">
+                                Trabajo
+                            </h4>
+                            <small class="list-group-item-text">
+                                Pasaje Madueño 137
+                            </small>
+                        </li>
+                        <li class="list-group-item">
+                            <button type="button" class="close">&times;</button>
+                            <h4 class="list-group-item-heading">
+                                Casa
+                            </h4>
+                            <small class="list-group-item-text">
+                                Avenida Belgrano 888
+                            </small>
+                        </li>
+                        <li class="list-group-item">
+                            <button type="button" class="close">&times;</button>
+                            <h4 class="list-group-item-heading">
+                                Novia
+                            </h4>
+                            <small class="list-group-item-text">
+                                Maipu 682
+                            </small>
+                        </li>
+                    </ul>
+
+
+                    <div class="form-group">
+                        <label for="direccion" class="control-label">Direccion:</label>
+                        <input type="text" class="form-control" id="direccion"
+                               placeholder="Ejemplo: Avenida Belgrano 238">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Fin Modal -->
+                                <!-- END BLOCK : modal.lugar.favoritos -->
+
+<!-- Cuerpo -->
+<section id="cuerpo_viajes">
+    <div class="row margen">
+        <div class="col-lg-1 col-md-1 eliminar"></div>
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 contenedor-per">
+            <h2 class="font-titulo-principal">{TITULO}</h2>
+
+                                <!-- START BLOCK : tarjeta.viaje -->
+
+            <!--TARJETA QUE MUESTRA LA INFORMACIÓN DE UN VIAJE REALIZADO-->
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="row contenedor-viaje margen {estado}"> //ESTADO PUEDE SER alert-success O alert-danger
+                    <div class="row borde-abajo">
+                        <div class="col-sm-9 col-xs-7">
+                            <h2 class="font-titulo">{destino}</h2>
+                        </div>
+                        <div class="col-sm-3 col-xs-5">
+                            <div><img src="../../recursos/imagen/Captura.png" class="img-perfil-viaje img-centrdo"
+                                      alt="conductor"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="row margen">
+                            <div class="font-tipo">Origen
+                                <div class="font-contenido">{origen}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="row margen">
+                            <div class="font-tipo">Distancia
+                                <div class="font-contenido">{distancia}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="row margen">
+                            <div class="font-tipo">Tiempo
+                                <div class="font-contenido">{tiempo}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="row margen">
+                            <div class="font-tipo">Costo
+                                <div class="font-contenido">{costo}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--TARJETA QUE MUESTRA LA INFORMACIÓN DE UN VIAJE REALIZADO-->
+
+                                <!-- END BLOCK : tarjeta.viaje -->
+
+                                    <!--NOTIFICACIONES-->
+            <!-- START BLOCK : no.tarjeta.viaje -->
+            <div class="alert alert-info">
+                <strong>Upps!</strong> No realizo ningún viaje aun.
+            </div>
+            <!-- END BLOCK : no.tarjeta.viaje -->
+
+        </div>
+    </div>
+</section>

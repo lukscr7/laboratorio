@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+
+    <!-- bootstrapp CSS -->
+    <link rel="stylesheet" href="../../recursos/css/bootstrap.css">
+
+    <!-- bootstrapp theme opcional!! -->
+    <link rel="stylesheet" href="../../recursos/css/bootstrap-theme.min.css">
+
+    <!-- FontAwesome !! -->
+    <link rel="stylesheet" href="../../recursos/css/font-awesome.css">
+
+    <!-- personal -->   
+    <link rel="stylesheet" href="../../recursos/css/personal_lucas.css">
+
+    <!-- loguin descargado -->
+
+    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel="stylesheet" type="text/css" href="../../recursos/css/style_lucas.css">
+
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- jQuerry -->    
+    <script src="../../recursos/js/personal_lucas.js"></script>
+    <script src="../../recursos/js/jquery-3.1.0.min.js" type="text/javascript"></script>.
+    <script type="text/javascript" src="../../recursos/js/bootstrap.min.js"></script>
+
+    <title>Header Curtain Effect - Bootsnipp.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+</head>
+<body >
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" >
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" href="#page-top" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">BuscaMe YA!!</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#log-in">Ingresa con tu usuario</a>
+                </li>
+                <li class="page-scroll">
+                        <a href="#Pedilo">Pedilo Ahora</a>
+                </li> 
+                <li class="page-scroll">
+                    <a href="#Sobre">Sobre Nosotros</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#Registro">Registro</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#Contacto">Contacto</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<header id="page-top">
+    <div class="container" id="hola">
+        <div class="row">
+            <div class="col-lg-12">
+            <!-- Contenedor de la pag estatic -->
+                <div class="intro-text col-12">
+                    <span class="name">|| BuscaMe YA ||</span>
+                    <hr class="star-light">
+                    <p class="skills">La mejor pagina para pedir <b>REMISES</b> y <b>TAXIS</b> ya esta aqui!!</p>
+                    <p class="skills">¡<b>REGISTRATE</b> para acceder a todos los beneficios que tenemos para que tu viaje sea el mejor!</p>
+                    <p class="skills"><b>¿No queres registrarte?</b> no importa, tenemos un sistema de <b>PEDIDO RAPIDO</b> solo para VOS</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+  <!-- Pedilo yaaaaaa -->
+<div  class="content-wrapper">
+    <section class="primary" id="Pedilo" >
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>PEDILO-YA</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-1 col-lg-1"></div>
+                <!-- contenedor del row con el pedido sin registro --> 
+                    <div class="col-4 col-lg-3 col-xm-5 gradiente sombreado_izq bordes_2izq"  >
+                        <form class="form-horizontal" role="form" >
+                              <div align="center"> <label id="login2">Pedilo sin necesidad de Registrarte</label></div>
+                                <!-- contenedor nombre -->
+                                <label>Nombre</label> 
+                              <div class="form-group login__row" align="center">  
+                                    <span class="glyphicon glyphicon-user" ></span>
+                                    <input type="text" id="nombre" class="login__input2 name" placeholder=""/>
+                              </div>
+                           
+                                <!-- contenedor apellido -->
+                                <label>Apellido</label>
+                              <div class="form-group login__row" align="center">
+                                    <span class="glyphicon glyphicon-user" ></span>
+                                    <input type="text" id="apellido" class="login__input2 name" placeholder=""/>
+                              </div>
+                                <!-- contenedor origen -->
+                                <label>Origen</label>
+                              <div class="form-group login__row" align="center">
+                                     <span class="glyphicon glyphicon-search"></span>
+                                    <input type="text" id="origen" class="login__input2 name" placeholder=""/>
+                              </div>
+                                <!-- contenedor destino -->
+                                <label>Destino</label>
+                              <div class="form-group login__row" align="center">
+                                    <span class="glyphicon glyphicon-home" ></span>
+                                    <input type="text" id="destino" class="login__input2 name" placeholder=""/>
+                              </div>
+                                          
+                                <!-- contenedor boton de pedir remis -->
+                              <div class="form-group" align="center">
+                                  <div> <button type="submit" class="login__submit2"><i class="fa fa-phone " aria-hidden="true"></i> Realizar Pedido</button></div>
+                              </div>
+                              <!-- contenedor registrar -->
+                              <div class="form-group"> <p class="login__signup2" align="center">No seria mejor tener cuenta? &nbsp;<a href="#Registro">Registrate Ahora</a></p></div>
+                             
+                              
+                        </form>         
+                    </div>
+                    <div class="col-7 co-7-lg.">
+                                <div class="intro-text" align="center">
+                                    
+                                    <hr>
+                                    <h4 class="skills" >Aprovecha nuestro servicio de pedidos rapidos</h4>
+                                    <h4 class="skills">Tan solo ingresando estos datos, tendras un movil en la puerta de tu casa</h4><br><br>
+                                    <h4 class="skills"> ¿Te interesa poder pagar con tarjeta de Credito? <a href="#Registro"><b>¡Registrate Ahora!</b></a></h4>
+                                     <hr>
+                                </div>
+                        
+                    </div>
+
+            </div>
+        </div>
+    </section>
+      <!-- fin de pedilo ya -->
+      <!-- login -->
+    <section class="success" id="log-in">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 col-lg-8 col-md-4 col-xs-5 col-offset-1 text-center">
+                <!-- col-lg-10 pantalla grande col-md-10 mediana col-sm-12 small col-xs-12 super small -->
+                    <h2>LOG-IN</h2>
+                    <hr class="star-light">
+                    <h3>¿Ya tenes usuario?</h3>
+                    <h3>¿Que esperas para acceder y solicitar tu pedido?</h3>
+                </div>
+                
+                 <!-- loguin -->  
+                <div id="aparece" class="col-4 col-lg-4 col-md-8 col-xs-7 login bordes_2der sombreado" align="center" >
+                    <form class="form-horizontal" role="form" >
+                            <div> <label id="login">Ingresa tu Cuenta</label></div>
+                                      <!-- contenedor usuario -->
+                            <div class="form-group login__row">
+                                            <svg class="login__icon name svg-icon" viewBox="0 0 20 20" for="usuario">
+                                                <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+                                            </svg>
+                                            <input type="text" id="usuario" class="login__input name" placeholder="Usuario"/>
+                            </div>
+                                         <!-- contenedor contraseña -->               
+                            <div class="form-group login__row">
+                                            <svg class="login__icon pass svg-icon" viewBox="0 0 20 20" for="contraseña">
+                                                      <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+                                            </svg>
+                                            <input type="password" id="contraseña" class="login__input pass" placeholder="Contrase&ntilde;a"/>
+
+                            </div>
+                                        <!-- contenedor boton -->
+                            <div class="form-group" align="center">
+                                          <div> 
+                                                <button type="submit" id="submit" name="submit" class="login__submit">Entrar</button>
+                                          </div>
+                            </div>
+                                      <!-- contenedor formulario -->
+                            <div class="form-group"> <p class="login__signup">No tienes una cuenta? &nbsp;<a href="#Registro">Registrar</a></p></div>
+                        </form>                     
+                    </div>
+                            <!-- contenedor margen derecho -->
+                
+            
+            <!-- fin loguin --> 
+            </div>         
+        </div>
+    </section>
+    <!-- fin de login -->
+    <!-- Registro --> 
+    <section class="primary" id="Registro">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Registro</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-header">                        
+                        <!-- titulo - Registro -->
+                        <h3 class="modal-title" align="center">Registrate, y accede a todos los beneficios. </h3>
+                    </div>
+                    <form name="formulario" id="formulario" novalidate="" >
+                        
+                    <!-- ventana contenido -->
+                    <div class="modal-body">
+                        <label>Nombre</label><input type="text" class="form-control" placeholder="Nombre"><br>
+                        <label>Apellido</label><input type="text" class="form-control" placeholder="Apellido"><br>
+                        <label>Nombre de Usuario</label>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">@</span>
+                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <label>Contrase&ntilde;a</label><input type="password" class="form-control" placeholder="Contrase&ntilde;a"><br>
+                        <label>Confirmar Contrase&ntilde;a</label><input type="password" class="form-control" placeholder="Confirmar Contrase&ntilde;a"><br>
+                        <section class="col-9">
+                            <label>Direccion</label><input type="text" class="form-control" placeholder="Direccion">
+                        </section>
+                        <section class="col-3">
+                            <label>Numero de casa</label><input type="number" class="form-control" placeholder="">
+                        </section>
+                        <label>Telefono</label><input type="number" minlength="8" maxlength="13" class="form-control" placeholder="Numero de Telefono"><br>
+                    </div>
+                    <!-- footer de la ventana -->
+                    <div class="row modal-footer">
+                        <button type="reset" class="btn btn-default" data-dismiss="modal"> Borrar Campos</button>
+                        <button type="submit" class="btn btn-primary"> Dar de ALTA</button>
+                    </div>
+                        
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>  
+    <!-- fin de registro -->
+    <!-- sobren nostros -->
+    <section class="success" id="Sobre">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Sobre Nosotros</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <p>El objetivo principal del desarrollo de la presente aplicación es, no solamente cumplir con los requisitos del trabajo de laboratorio de la catedra de “programación III” de la facultad de “Tecnología y Ciencias aplicadas”, sino también ayudar a mejorar el servicio de taxis y remises en la ciudad de San Fernando del Valle de Catamarca (provincia de Catamarca). </p>
+                </div>
+                <div class="col-lg-4">
+                    <p>Con esta Aplicación web ofrecemos una nueva forma de acceder al servicio a través de la web, pudiendo pedir un móvil prescindiendo de la tipica “llamada de teléfono”; brindando a los usuarios registrados la posibilidad de poder pagar el viaje con tarjeta de crédito, generando un comprobante con un código único, al presentarlo, el conductor tendría que llevarlo a donde el pasajero solicito. También cada pasajero dispondrá de la opción de agregar lugares personales, para hacer más rápido el pedido.</p>
+                </div>
+                <div class="col-lg-4">
+                    <p><b>“BuscaMe YA”</b> está diseñada para favorecer a las empresas de la ciudad, pues cada una de ellas puede decidir ingresar al sistema, donde ofreceremos un registro total de conductores, móviles y viajes realizados en tiempo real, donde podrán responder a cada pedido de parte de los pasajeros. Incluso cada conductor que se agregue al Sistema, tendrá su propio perfil de usuario para que el mismo tenga un registro de sus viajes y ganancias.</p>
+                </div>
+            </div>
+            <div class="row" align="center">
+                <h2>Desarrolladores</h2>
+                <hr class="star-light">
+                <p>Barrientos, Christian Ariel <br> Diaz, Lucas Agustin <br> Flores, Dario Exequiel</p>
+            </div>
+        </div>
+    </section>
+    <!-- fin de Sobre nosotros -->
+    <!-- Contacto -->
+    <section class="primary" id="Contenedor.contacto">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Contacto</h2>
+                    <hr class="star-primary">
+                    <h3></h3>
+                    <form align="center">
+                        <div class="" id="contacto" align="center">
+                            <div class="modal-body">
+                                <label>Nombre Empresa</label><input type="text" class="form-control" placeholder="Nombre"><br>
+                                <label>¿Porque te interesa darte de alta?</label> <textarea class="form-control" rows="4" placeholder="Cuentanos una breve descripcion de su empresa"></textarea>
+                                <label>Correo de contacto</label> <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ejemplo@org.dominio">
+                                <label>Telefono de contacto</label><input type="number" class="form-control" id="num_contacto" aria-describedby="emailHelp" placeholder="0383-15******">
+                                <div class="row modal-footer">
+                                    <button type="reset" class="btn btn-default" data-dismiss="modal"> Borrar Campos</button>
+                                    <button type="submit" class="btn btn-primary"> Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+      <!-- fin de contacto -->
+      <!-- footer -->
+    <footer id="container" class="container" style="">
+        <h5>Una nueva forma de Pedir un Movil |BuscaMe YA!!| © 2016 </h5>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+@charset "utf-8";
+/* CSS Document */
+
+.contenedor-per{
+	background-color:#FFF;
+	border-radius:5px;
+	padding-top:15px;
+	padding-bottom:15px;
+	border:1px solid;
+	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+}
+
+.contenedor-viaje{
+	border:1px solid;
+	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+	border-radius:5px;
+	padding-bottom:5px;
+	padding-top:5px;
+}
+
+.margen{
+	margin-bottom:5px;
+	margin-top:5px;
+}
+
+.centrado{
+  text-align: center;
+  margin: 0 auto;
+}
+
+.text-centrado{
+	text-align:center;
+}
+
+.img-centrdo{
+	margin:0 auto;
+}
+
+.fondo{
+	/*background: rgba(41,184,229,1);
+	background: -moz-linear-gradient(left, rgba(41,184,229,1) 0%, rgba(179,220,237,1) 80%, rgba(188,224,238,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(41,184,229,1)), color-stop(80%, rgba(179,220,237,1)), color-stop(100%, rgba(188,224,238,1)));
+	background: -webkit-linear-gradient(left, rgba(41,184,229,1) 0%, rgba(179,220,237,1) 80%, rgba(188,224,238,1) 100%);
+	background: -o-linear-gradient(left, rgba(41,184,229,1) 0%, rgba(179,220,237,1) 80%, rgba(188,224,238,1) 100%);
+	background: -ms-linear-gradient(left, rgba(41,184,229,1) 0%, rgba(179,220,237,1) 80%, rgba(188,224,238,1) 100%);
+	background: linear-gradient(to right, rgba(41,184,229,1) 0%, rgba(179,220,237,1) 80%, rgba(188,224,238,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29b8e5', endColorstr='#bce0ee', GradientType=1 );
+	*/
+	background-color:#E8ECF1;
+}
+
+.img-perfil-viaje{
+	border-radius: 20%;
+	display:block;
+	border:1px solid #39F;
+	margin-bottom:5px;
+	float:right;
+	text-align:center;
+	height: 50px;
+	width: 50px;
+    max-width: 100%;
+    
+}
+
+.img-perfil{
+	border-radius: 20%;
+	display:block;
+	max-width:100%;
+	border:2px solid #39F;
+	margin-bottom:5px;
+	float:none;
+	text-align:center;
+	height: 200px;
+	width: 200px;
+}
+
+.borde-abajo{
+	border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+.row{
+	margin-left:1px;
+	margin-right:-1px;
+}
+
+
+
+/*Estilos de las letras*/
+.font-tipo{
+	color: rgba(0,0,0,0.54);
+    font: 500 14px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    overflow: hidden;
+    padding-bottom: 4px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+	float:left;
+}
+
+.font-titulo{
+	color: rgba(0,0,0,0.87);
+    -webkit-box-flex: 1;
+    flex: 1;
+    font: 500 20px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+	text-align:left;
+}
+
+.font-titulo-principal{
+	color: rgba(0,0,0,0.87);
+    -webkit-box-flex: 1;
+    flex: 1;
+    font: 500 30px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    margin-left: 24px;
+	margin-top:10px;
+	text-align:left;
+}
+
+.font-contenido{
+	color: rgba(0,0,0,0.87);
+    font: 400 16px/24px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.font-pie{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight:800;
+	color:#999;
+}
+
+.ng-invalid{
+    border: thin solid #990000;
+}
+
+.ng-valid{
+    border: thin solid #090;
+}
+
+
+
+
+
+
+/******************************************/
+/***    DISEÑO PARA TABLETAS           ****/
+/******************************************/
+@media only screen and (max-width:768px){
+	.img-perfil{
+		margin:0 auto;
+	}
+
+}
+/******************************************/
+/***    DISEÑO PARA MOVILES 480        ****/
+/******************************************/
+@media only screen and (max-width:480px){
+	.eliminar{
+		display:none;
+	}
+}
+/******************************************/
+/***    DISEÑO PARA MOVILES 320        ****/
+/******************************************/
+@media only screen and (max-width:320px){
+	
+}
+/******************************************/
+/***    DISEÑO PARA MOVILES 240        ****/
+/******************************************/
+@media only screen and (max-width:240px){
+	
+	
+}

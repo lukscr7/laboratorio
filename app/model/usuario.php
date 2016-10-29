@@ -15,7 +15,7 @@ class Usuario{
     private $correo;
     private $permisos;
     private $foto_perfil;
-    private $bandera;
+    private $bandera;  // DARIO APRENDIO A USAR EL GITHUB WIIII!!!
 
     /**
      * @return mixed

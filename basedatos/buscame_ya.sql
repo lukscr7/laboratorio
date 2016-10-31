@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2016 a las 21:30:47
+-- Tiempo de generación: 31-10-2016 a las 22:32:54
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.8
 
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `auto`
+-- Estructura de tabla para la tabla `autos`
 --
 
-CREATE TABLE `auto` (
+CREATE TABLE `autos` (
   `id_auto` bigint(20) NOT NULL,
   `id_e` bigint(20) NOT NULL,
   `patente_auto` varchar(10) NOT NULL,
@@ -34,31 +34,31 @@ CREATE TABLE `auto` (
   `marca_auto` varchar(20) NOT NULL,
   `modelo` varchar(20) NOT NULL,
   `color` varchar(20) NOT NULL,
-  `tamaño` varchar(20) NOT NULL,
-  `id_c` bigint(20) NOT NULL
+  `tamaño` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `conductor`
+-- Estructura de tabla para la tabla `conductores`
 --
 
-CREATE TABLE `conductor` (
+CREATE TABLE `conductores` (
   `id_c` bigint(20) NOT NULL,
   `user_id_c` varchar(20) NOT NULL,
   `descripcion_c` varchar(200) NOT NULL,
   `id_e` bigint(20) NOT NULL,
-  `estado` enum('LIBRE','OCUPADO') NOT NULL
+  `estado` enum('LIBRE','OCUPADO') NOT NULL,
+  `id_auto` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empresa`
+-- Estructura de tabla para la tabla `empresas`
 --
 
-CREATE TABLE `empresa` (
+CREATE TABLE `empresas` (
   `id_e` bigint(20) NOT NULL,
   `user_e` varchar(20) NOT NULL,
   `nom_e` varchar(50) NOT NULL,
@@ -109,10 +109,10 @@ CREATE TABLE `ubi_empresa` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE `usuarios` (
   `user_id` varchar(20) NOT NULL,
   `pass` varchar(20) NOT NULL,
   `nom_us` varchar(30) NOT NULL,
@@ -148,27 +148,27 @@ CREATE TABLE `viajes` (
 --
 
 --
--- Indices de la tabla `auto`
+-- Indices de la tabla `autos`
 --
-ALTER TABLE `auto`
+ALTER TABLE `autos`
   ADD PRIMARY KEY (`id_auto`),
   ADD UNIQUE KEY `patente_auto` (`patente_auto`),
   ADD UNIQUE KEY `id_e_2` (`id_e`,`num_remis_auto`),
-  ADD KEY `id_e` (`id_e`),
-  ADD KEY `id_c` (`id_c`);
-
---
--- Indices de la tabla `conductor`
---
-ALTER TABLE `conductor`
-  ADD PRIMARY KEY (`id_c`),
-  ADD KEY `user_id_c` (`user_id_c`),
   ADD KEY `id_e` (`id_e`);
 
 --
--- Indices de la tabla `empresa`
+-- Indices de la tabla `conductores`
 --
-ALTER TABLE `empresa`
+ALTER TABLE `conductores`
+  ADD PRIMARY KEY (`id_c`),
+  ADD KEY `user_id_c` (`user_id_c`),
+  ADD KEY `id_e` (`id_e`),
+  ADD KEY `id_auto` (`id_auto`);
+
+--
+-- Indices de la tabla `empresas`
+--
+ALTER TABLE `empresas`
   ADD PRIMARY KEY (`id_e`),
   ADD KEY `user_e` (`user_e`);
 
@@ -195,9 +195,9 @@ ALTER TABLE `ubi_empresa`
   ADD KEY `id_e` (`id_e`);
 
 --
--- Indices de la tabla `usuario`
+-- Indices de la tabla `usuarios`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`user_id`);
 
 --
@@ -215,19 +215,19 @@ ALTER TABLE `viajes`
 --
 
 --
--- AUTO_INCREMENT de la tabla `auto`
+-- AUTO_INCREMENT de la tabla `autos`
 --
-ALTER TABLE `auto`
+ALTER TABLE `autos`
   MODIFY `id_auto` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `conductor`
+-- AUTO_INCREMENT de la tabla `conductores`
 --
-ALTER TABLE `conductor`
+ALTER TABLE `conductores`
   MODIFY `id_c` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `empresa`
+-- AUTO_INCREMENT de la tabla `empresas`
 --
-ALTER TABLE `empresa`
+ALTER TABLE `empresas`
   MODIFY `id_e` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `forma_pago`
@@ -254,44 +254,43 @@ ALTER TABLE `viajes`
 --
 
 --
--- Filtros para la tabla `auto`
+-- Filtros para la tabla `autos`
 --
-ALTER TABLE `auto`
-  ADD CONSTRAINT `auto_ibfk_1` FOREIGN KEY (`id_e`) REFERENCES `empresa` (`id_e`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `auto_ibfk_2` FOREIGN KEY (`id_c`) REFERENCES `conductor` (`id_c`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `autos`
+  ADD CONSTRAINT `autos_ibfk_1` FOREIGN KEY (`id_e`) REFERENCES `empresas` (`id_e`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `conductor`
+-- Filtros para la tabla `conductores`
 --
-ALTER TABLE `conductor`
-  ADD CONSTRAINT `conductor_ibfk_1` FOREIGN KEY (`id_e`) REFERENCES `empresa` (`id_e`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `conductor_ibfk_2` FOREIGN KEY (`user_id_c`) REFERENCES `usuario` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `conductores`
+  ADD CONSTRAINT `conductores_ibfk_1` FOREIGN KEY (`id_e`) REFERENCES `empresas` (`id_e`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `conductores_ibfk_2` FOREIGN KEY (`user_id_c`) REFERENCES `usuarios` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `empresa`
+-- Filtros para la tabla `empresas`
 --
-ALTER TABLE `empresa`
-  ADD CONSTRAINT `empresa_ibfk_1` FOREIGN KEY (`user_e`) REFERENCES `usuario` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `empresas`
+  ADD CONSTRAINT `empresas_ibfk_1` FOREIGN KEY (`user_e`) REFERENCES `usuarios` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lugares_favoritos`
 --
 ALTER TABLE `lugares_favoritos`
-  ADD CONSTRAINT `lugares_favoritos_ibfk_1` FOREIGN KEY (`user_p`) REFERENCES `usuario` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lugares_favoritos_ibfk_1` FOREIGN KEY (`user_p`) REFERENCES `usuarios` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ubi_empresa`
 --
 ALTER TABLE `ubi_empresa`
-  ADD CONSTRAINT `ubi_empresa_ibfk_1` FOREIGN KEY (`id_e`) REFERENCES `empresa` (`id_e`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ubi_empresa_ibfk_1` FOREIGN KEY (`id_e`) REFERENCES `empresas` (`id_e`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  ADD CONSTRAINT `viajes_ibfk_1` FOREIGN KEY (`user_id_p`) REFERENCES `usuario` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `viajes_ibfk_1` FOREIGN KEY (`user_id_p`) REFERENCES `usuarios` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `viajes_ibfk_3` FOREIGN KEY (`id_forma_pago`) REFERENCES `forma_pago` (`id_forma_pago`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `viajes_ibfk_4` FOREIGN KEY (`id_c`) REFERENCES `conductor` (`id_c`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `viajes_ibfk_4` FOREIGN KEY (`id_c`) REFERENCES `conductores` (`id_c`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

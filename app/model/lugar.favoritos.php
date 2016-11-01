@@ -57,18 +57,83 @@ class LugarFavorito{
     }
 
     /**
-     * @return array|mixed
+     * @return mixed
      */
-    public function getLugares()
+    public function getNomLugar()
     {
-        return $this->lugares;
+        return $this->nom_lugar;
     }
 
     /**
-     * @param array|mixed $lugares
+     * @param mixed $nom_lugar
      */
-    public function setLugares($lugares)
+    public function setNomLugar($nom_lugar)
     {
-        $this->lugares = $lugares;
+        $this->nom_lugar = $nom_lugar;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUbicacion()
+    {
+        return $this->ubicacion;
+    }
+
+    /**
+     * @param mixed $ubicacion
+     */
+    public function setUbicacion($ubicacion)
+    {
+        $this->ubicacion = $ubicacion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdLugar()
+    {
+        return $this->id_lugar;
+    }
+
+    /**
+     * @param mixed $id_lugar
+     */
+    public function setIdLugar($id_lugar)
+    {
+        $this->id_lugar = $id_lugar;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLongitud()
+    {
+        return $this->longitud;
+    }
+
+    /**
+     * @param mixed $longitud
+     */
+    public function setLongitud($longitud)
+    {
+        $this->longitud = $longitud;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatitud()
+    {
+        return $this->latitud;
+    }
+
+    /**
+     * @param mixed $latitud
+     */
+    public function setLatitud($latitud)
+    {
+        $this->latitud = $latitud;
+    }
+
 }

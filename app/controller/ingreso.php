@@ -26,10 +26,7 @@ class Ingreso_Controller{
             $tpl->assign("op","ERROR NO SE CONECTO A DB");
         }
         // Retornamos el objeto template para que se muestre el men�.
-        return $tpl;
-
-        //Puto el que lee
-        echo "puto el que lee";
+        return $tpl->getOutputContent();
     }
 }
 ?>

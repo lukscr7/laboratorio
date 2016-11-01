@@ -114,38 +114,7 @@
 
                 <div class="form-group">
                     <label for="direccion" class="control-label">Lugares:</label>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <!-- Agregar un boton mas para ir a Google Maps con la direccion -->
-                            <button type="button" class="close">&times;</button>
-                            <h4 class="list-group-item-heading">
-                                Trabajo
-                            </h4>
-                            <small class="list-group-item-text">
-                                Pasaje Madueño 137
-                            </small>
-                        </li>
-                        <li class="list-group-item">
-                            <button type="button" class="close">&times;</button>
-                            <h4 class="list-group-item-heading">
-                                Casa
-                            </h4>
-                            <small class="list-group-item-text">
-                                Avenida Belgrano 888
-                            </small>
-                        </li>
-                        <li class="list-group-item">
-                            <button type="button" class="close">&times;</button>
-                            <h4 class="list-group-item-heading">
-                                Novia
-                            </h4>
-                            <small class="list-group-item-text">
-                                Maipu 682
-                            </small>
-                        </li>
-                    </ul>
-
-
+                    {listaLugaresFavoritos}
                     <div class="form-group">
                         <label for="direccion" class="control-label">Direccion:</label>
                         <input type="text" class="form-control" id="direccion"
@@ -180,7 +149,7 @@
                             <h2 class="font-titulo">{destino}</h2>
                         </div>
                         <div class="col-sm-3 col-xs-5">
-                            <div><img src="../../recursos/imagen/Captura.png" class="img-perfil-viaje img-centrdo"
+                            <div><img src="{fotoPerfil_conductor}" class="img-perfil-viaje img-centrdo"
                                       alt="conductor"></div>
                         </div>
                     </div>

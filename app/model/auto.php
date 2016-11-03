@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: alumno
+ * User: darioflores
  * Date: 27/10/2016
  * Time: 03:20 PM
  */
@@ -17,6 +17,76 @@ class Auto{
     private $modelo;
     private $color;
     private $tamaño;
+
+    /**
+     * Crea un Objeto Auto a partir de un array que surge de una consulta a la base de datos.
+     * @param $array
+     * @return $this
+     */
+    public function constructoAuto($array)
+    {
+        $this->id_auto = $array["id_auto"];
+        $this->id_e = $array["id_e"];
+        $this->patente = $array["patente"];
+        $this->num_remis = $array["num_remis"];
+        $this->marca = $array["marca"];
+        $this->modelo = $array["modelo"];
+        $this->color = $array["color"];
+        $this->tamaño = $array["tamaño"];
+        return $this;
+    }
+
+    /**
+     * retorna una lista de los autos que tiene una empresa $id_e
+     * @param $id_e
+     * @return array|null
+     */
+    public function autos_empresa($id_e){
+        global $baseDatos;
+        $autos_empresa = array();
+        //PREGUNTAR SI EXISTE ALGUN AUTO ANTES DE PEDIRLOS SINO PRODUCE ERROR
+        if ($this->existeAutoEmpresa($id_e)){
+            $sql = "SELECT * FROM autos WHERE id_e = '$id_e'";
+            $result = $baseDatos->query($sql);
+            $autos = $result->fetch_all(MYSQLI_ASSOC);
+            foreach ($autos as $res){
+                $auto = new Auto();
+                $autos_empresa[] = $auto->constructoAuto($res);//array de Auto que tiene una empresa
+            }
+            return $autos_empresa;
+        }else{
+            return null;
+        }
+    }
+
+    /**
+     * Genera un Objeto Auto a partir del id_auto
+     * @param $id_auto
+     * @return Auto
+     */
+    public function autoID($id_auto){
+        global $baseDatos;
+        $sql = "SELECT * FROM `autos` WHERE `id_auto` = '$id_auto'";
+        $res = $baseDatos->query($sql);
+        $array = $res->fetch_assoc();
+        return $this->constructoAuto($array);
+    }
+
+    /**
+     * Usada para saber si la Empresa id_e tiene algún Auto
+     * @param $id_e
+     * @return bool
+     */
+    public function existeAutoEmpresa($id_e){
+        global $baseDatos;
+        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `autos` WHERE `id_e` = '$id_e'");
+        $res = $results->fetch_assoc();
+        if ($res["cant"] != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     /**
      * @return mixed
@@ -146,14 +216,4 @@ class Auto{
         $this->tamaño = $tamaño;
     }
 
-    public function autos_empresa($id_e){
-        global $baseDatos;
-        $sql = "SELECT * FROM autos WHERE id_e = $id_e";
-        $resultado = $baseDatos->query($sql);
-        return $resultado->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function auto_conductor($id_c){
-        //Continuar 27/10 15:30
-    }
 }

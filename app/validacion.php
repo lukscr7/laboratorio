@@ -41,4 +41,8 @@ class Validacion{
             return 0;
         }
     }
+    function validar_login(){
+        //la funcion que tenes el el validar login..
+    }
+
 }

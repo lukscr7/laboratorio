@@ -16,14 +16,15 @@ class Usuario{
     private $permisos;
     private $foto_perfil;
     private $bandera;
+    private $usuario;
 
     /**
      * Usuario constructor.
      * @param $user_id
      */
-    public function __construct($user_id)
+    public function __construct(/*$user_id*/)
     {
-        $res = $this->dat_usuario($user_id);
+      /*  $res = $this->dat_usuario($user_id);
 
         $this->user_id = $res["user_id"];
         $this->pass = $res["pass"];
@@ -32,8 +33,9 @@ class Usuario{
         $this->correo = $res["correo"];
         $this->permisos = $res["permisos"];
         $this->foto_perfil = $res["foto_perfil"];
-        $this->bandera = $res["bandera"];
+        $this->bandera = $res["bandera"];*/
     }
+
 
 
     public function dat_usuario($user_id){
@@ -48,6 +50,7 @@ class Usuario{
         $sql = "SELECT * FROM usuarios";
         $resultado = $baseDatos->query($sql);
         return $resultado->fetch_all(MYSQLI_ASSOC);
+
     }
 
     /**

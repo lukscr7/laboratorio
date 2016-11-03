@@ -18,22 +18,30 @@ class Menu_Controller{
 
     public static function menu()
     {
-        $tpl = new TemplatePower("template/menu.html");
-        $tpl->prepare();
-        $tpl->gotoBlock("_ROOT");
+        if (isset($_SESSION["user_id"])){
+            $tpl = new TemplatePower("template/menu.html");
+            $tpl->prepare();
+            $tpl->gotoBlock("_ROOT");
 
-        foreach (Menu_Controller::$menu as $clave => $value) {
-            $tpl->newBlock("menu");
-            $tpl->assign("ref", $value);
-            $tpl->assign("nom", $clave);
-        }
-        if (isset($_SESSION["usuario"])) {
-            $tpl->newBlock("registrado");
-            $tpl->assign("usuario", $_SESSION["usuario"]);
-        } else {
-            $tpl->newBlock("noReg");
-        }
+            foreach (Menu_Controller::$menu as $clave => $value) {
+                $tpl->newBlock("menu");
+                $tpl->assign("ref", $value);
+                $tpl->assign("nom", $clave);
+            }
+            if (isset($_SESSION["usuario"])) {
+                $tpl->newBlock("registrado");
+                $tpl->assign("usuario", $_SESSION["usuario"]);
+            } else {
+                $tpl->newBlock("noReg");
+            }
 
+
+        }else{
+            $tpl = new TemplatePower("template/menu_login.html");
+            $tpl->prepare();
+            $tpl->gotoBlock("_ROOT");
+
+        }
         return $tpl->getOutputContent();
     }
 }

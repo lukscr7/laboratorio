@@ -8,11 +8,17 @@
 class Ingreso_Controller{
 
     public static function main(){
-        $tpl = new TemplatePower("template/loguin.html");
-        $tpl->prepare();
-        $tpl->gotoBlock("_ROOT");
 
-        return $tpl->getOutputContent();
+        if (isset($_SESSION["permisos"])){
+            $perfil = new Perfil_Controller();
+            $webapp = $perfil->pasajero();
+        }else{
+            $tpl = new TemplatePower("template/loguin.html");
+            $tpl->prepare();
+            $tpl->gotoBlock("_ROOT");
+            $webapp = $tpl->getOutputContent();
+        }
+        return $webapp;
     }
 }
 ?>

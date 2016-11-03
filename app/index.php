@@ -57,7 +57,7 @@ if ($config["dbEngine"]=="MYSQL"){
 // INSTANCIA TEMPLATE |
 //---------------------
 
-	$tpl = new TemplatePower("templates/index.html");
+	$tpl = new TemplatePower("template/index.html");
 	$tpl->prepare();
 	
 //===========================================================================================================
@@ -65,7 +65,7 @@ if ($config["dbEngine"]=="MYSQL"){
 //-------------------		
 
 	$tpl->gotoBlock("_ROOT");
-    $tpl->assign("menu",Vuelos_Controller::menu());
+    $tpl->assign("menu",Menu_Controller::menu());
 	$tpl->assign("contenido",$html);
 	$webapp=$tpl->getOutputContent();
 	echo $webapp;

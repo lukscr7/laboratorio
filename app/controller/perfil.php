@@ -17,7 +17,7 @@ class Perfil_Controller{
         //VALORES DE LA PAGINA
         $tp1->assign("nombre_usuario",$us->getNomUs());
         $tp1->assign("tipo_usuario",$us->getPermisos());
-        //$tp1->assign("imagen_pasajero",$us->getFotoPerfil());
+        $tp1->assign("imagen_pasajero",$us->getFotoPerfil());
         $tp1->assign("descripcion",""); //YA VEMOS SI LE PONEMOS DESCRIPCIÓN AL USUARIO
         $tp1->assign("titulo_body","Historial de Viajes");
 
@@ -39,9 +39,7 @@ class Perfil_Controller{
                 $lugaresFavoritos->assign("EtiquetaLF", $lugar["nom_lugar"]);
                 $lugaresFavoritos->assign("direccion", $lugar["ubicacion"]);
             }
-            print "no encotro lugares";
         }else{
-            print "no encotro lugares";
             $lugaresFavoritos->newBlock("noLF");
         }
         //FIN DEBERÍA IR EN OTRO CONTROLLER PERO NAAAA

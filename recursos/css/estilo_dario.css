@@ -23,6 +23,10 @@
 	margin-top:5px;
 }
 
+.margen-notificaciones{
+	margin-top: -20px;
+}
+
 .centrado{
   text-align: center;
   margin: 0 auto;

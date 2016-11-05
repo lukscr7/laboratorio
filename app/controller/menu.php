@@ -15,6 +15,12 @@ class Menu_Controller{
         "Sobre" => "index.php?action=Vuelos::listadoReservasBorrado"
     );
 
+    private static $errores = array(        //Agregar mensajes de error AQUÍ
+        "UsuarioMal" => array(
+            "mensaje" => "Usuario o Contraseña Incorrecta",
+            "condicion" => "Correcto"
+        )
+    );
 
     public static function menu()
     {
@@ -28,16 +34,48 @@ class Menu_Controller{
                 $tpl->assign("ref", $value);
                 $tpl->assign("nom", $clave);
             }
-            if (isset($_SESSION["usuario"])) {
-                $tpl->newBlock("registrado");
-                $tpl->assign("usuario", $_SESSION["usuario"]);
-            } else {
-                $tpl->newBlock("noReg");
-            }
+            $us = new Usuario();
+            $us->dat_usuario($_SESSION["usuario"]);
+            $tpl->newBlock("registrado");
+            $tpl->assign("usuario", $us->getNomUs()." ".$us->getApeUs());
         }else{
             $tpl = new TemplatePower("template/menu_login.html");
             $tpl->prepare();
             $tpl->gotoBlock("_ROOT");
+        }
+        return $tpl->getOutputContent();
+    }
+
+    public static function notificacion($codigo)
+    {
+        $tpl = new TemplatePower("template/notificacion.html");
+        $tpl->prepare();
+        $tpl->gotoBlock("_ROOT");
+        $error = Menu_Controller::$errores;
+        if (isset($error[$codigo])){
+            switch ($error[$codigo]["condicion"]){
+                case "Correcto":
+                    $tpl->assign("menj", "Muy Bien!");
+                    $tpl->assign("tipo", "alert-success");
+                    break;
+                case "Info":
+                    $tpl->assign("menj", "Info!");
+                    $tpl->assign("tipo", "alert-info");
+                    break;
+                case "Error":
+                    $tpl->assign("menj", "Upps!");
+                    $tpl->assign("tipo", "alert-danger");
+                    break;
+                default:
+                    $tpl->assign("menj", "Info!");
+                    $tpl->assign("tipo", "alert-info");
+                    break;
+            }
+            $tpl->assign("mensaje", $error[$codigo]["mensaje"]);
+        }else{
+            $tpl->assign("menj", "Upps!");
+            $tpl->assign("mensaje", "JAJAJA NO ME VAS A HACKEAR");
+            $tpl->assign("tipo", "alert-danger");
         }
         return $tpl->getOutputContent();
     }

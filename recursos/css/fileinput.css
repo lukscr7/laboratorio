@@ -93,7 +93,7 @@
 }
 
 .loading {
-    background: transparent url('../img/loading.gif') no-repeat scroll center center content-box !important;
+    background: transparent url('../imagen/loading.gif') no-repeat scroll center center content-box !important;
 }
 
 .wrap-indicator {

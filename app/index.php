@@ -73,7 +73,9 @@ if ($config["dbEngine"]=="MYSQL"){
 
     $tpl->assign("menu",Menu_Controller::menu());
 	$tpl->assign("contenido",$html);
+    if (isset($_GET["error"])){
+        $tpl->newBlock("notificacion");
+        $tpl->assign("not",Menu_Controller::notificacion($_GET["error"]));
+    }
 	$webapp=$tpl->getOutputContent();
 	echo $webapp;
-
-?>

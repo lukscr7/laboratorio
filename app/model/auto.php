@@ -21,7 +21,6 @@ class Auto{
     /**
      * Crea un Objeto Auto a partir de un array que surge de una consulta a la base de datos.
      * @param $array
-     * @return $this
      */
     public function constructoAuto($array)
     {
@@ -33,13 +32,12 @@ class Auto{
         $this->modelo = $array["modelo"];
         $this->color = $array["color"];
         $this->tamaño = $array["tamaño"];
-        return $this;
     }
 
     /**
      * retorna una lista de los autos que tiene una empresa $id_e
      * @param $id_e
-     * @return array|null
+     * @return Auto[]|null
      */
     public function autos_empresa($id_e){
         global $baseDatos;
@@ -51,7 +49,8 @@ class Auto{
             $autos = $result->fetch_all(MYSQLI_ASSOC);
             foreach ($autos as $res){
                 $auto = new Auto();
-                $autos_empresa[] = $auto->constructoAuto($res);//array de Auto que tiene una empresa
+                $auto->constructoAuto($res);//array de Auto que tiene una empresa
+                $autos_empresa[] = $auto;
             }
             return $autos_empresa;
         }else{
@@ -66,10 +65,12 @@ class Auto{
      */
     public function autoID($id_auto){
         global $baseDatos;
+        $auto = new Auto();
         $sql = "SELECT * FROM `autos` WHERE `id_auto` = '$id_auto'";
         $res = $baseDatos->query($sql);
         $array = $res->fetch_assoc();
-        return $this->constructoAuto($array);
+        $auto->constructoAuto($array);
+        return $auto;
     }
 
     /**

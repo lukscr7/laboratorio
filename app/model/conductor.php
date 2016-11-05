@@ -6,7 +6,7 @@
  * Time: 02:58 PM
  */
 
-class Condctor{
+class Conductor{
 
     private $id_c;
     private $user_id_c;
@@ -17,7 +17,6 @@ class Condctor{
     /**
      * Crea un Objeto Conductor a partir de un array que surge de una consulta a la base de datos.
      * @param $array
-     * @return Condctor
      */
     public function constructorConductor($array)
     {
@@ -26,27 +25,28 @@ class Condctor{
         $this->id_e = $array["id_e"];
         $this->estado = $array["estado"];
         $this->id_auto = $array["id_auto"];
-        return $this;
     }
 
 
     /**
      * Crea un Objeto Conductor a partir de un id_c
      * @param $id_c
-     * @return Condctor
+     * @return Conductor
      */
     public function conductor_id($id_c){
         global $baseDatos;
+        $conductor = new Conductor();
         $sql = "SELECT * FROM conductores WHERE id_c = '$id_c'";
         $resultado = $baseDatos->query($sql);
         $con = $resultado->fetch_assoc();
-        return $this->constructorConductor($con);
+        $conductor->constructorConductor($con);
+        return $conductor;
     }
 
     /**
      * Devuelve un listado de los Conductores que tiene una Empresa con id_e
      * @param $id_e
-     * @return array|null
+     * @return Conductor[]|null
      */
     public function allConductoresEmpresa($id_e){
         global $baseDatos;
@@ -56,8 +56,9 @@ class Condctor{
             $resultado = $baseDatos->query($sql);
             $conductores = $resultado->fetch_all(MYSQLI_ASSOC);
             foreach ($conductores as $con){
-                $conductor = new Condctor();
-                $listaConductores[] = $conductor->constructorConductor($con);
+                $conductor = new Conductor();
+                $conductor->constructorConductor($con);
+                $listaConductores[] = $conductor;
             }
             return $listaConductores;
         }else{

@@ -8,49 +8,106 @@
 
 class Usuario{
 
-    private $user_id;           //`user_id`,`pass`,`nom_us`,`ape_us`,`correo`,`permisos`,`foto_perfil`,`bandera`
+    private $user_id;           //`user_id``pass``nom_us``ape_us``correo``descripcion``permisos``foto_perfil``bandera`
     private $pass;
     private $nom_us;
     private $ape_us;
     private $correo;
+    private $descripcion;
     private $permisos;
     private $foto_perfil;
     private $bandera;
-    private $usuario;
 
     /**
-     * Usuario constructor.
-     * @param $user_id
+     * Crea a un nuevo objeto Usuario a partir de una consulta a la Base de Datos.
+     * @param $array
      */
-    public function __construct(/*$user_id*/)
+    public function constructorUsuario($array)
     {
-      /*  $res = $this->dat_usuario($user_id);
-
-        $this->user_id = $res["user_id"];
-        $this->pass = $res["pass"];
-        $this->nom_us = $res["nom_us"];
-        $this->ape_us = $res["ape_us"];
-        $this->correo = $res["correo"];
-        $this->permisos = $res["permisos"];
-        $this->foto_perfil = $res["foto_perfil"];
-        $this->bandera = $res["bandera"];*/
+        $this->user_id = $array["user_id"];
+        $this->pass = $array["pass"];
+        $this->nom_us = $array["nom_us"];
+        $this->ape_us = $array["ape_us"];
+        $this->correo = $array["correo"];
+        $this->descripcion = $array["descripcion"];
+        $this->permisos = $array["permisos"];
+        $this->foto_perfil = $array["foto_perfil"];
+        $this->bandera = $array["bandera"];
     }
 
+    /**
+     * Consulta si tiene algún Conductor la Empresa con id_e
+     * @param $user_id
+     * @return bool
+     */
+    public function existeUsuario($user_id){
+        global $baseDatos;
+        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `usuarios` WHERE `user_id` = '$user_id'");
+        $res = $results->fetch_assoc();
+        if ($res["cant"] != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
+    /**
+     * Verifica el usuario y contraseña para que se pueda iniciar sesión
+     * true = Correcto!   --   false = Incorrecto :C
+     * @param $usuario
+     * @param $contraseña
+     * @return bool
+     */
+    public function verificarUsuario($usuario, $contraseña){
+        $validar = new Validacion();
+        $us = new Usuario();
+        if ($us->dat_usuario($usuario))
+        $pass = $validar->pass($contraseña,$us->getPass()); //PRUEBA QUE LAS DOS CONTRASEÑAS SEAN IGUALES
+        if ($us != null && $pass){
+            return true;
+        }else{
+            return false;
+        }
 
+    }
+    /**
+     * Trae todos los datos de un Usuario user_id de la Base de Datos.
+     * @param $user_id
+     * @return bool
+     */
     public function dat_usuario($user_id){
         global $baseDatos;
-        $sql = "SELECT * FROM usuarios WHERE user_id = $user_id";    //PONER COMO SQL
-        $resultado = $baseDatos->query($sql);
-        return $resultado->fetch_assoc();
+        if ($this->existeUsuario($user_id)){
+            $sql = "SELECT * FROM `usuarios` WHERE `user_id` = '$user_id'";
+            $resultado = $baseDatos->query($sql);
+            if ($resultado != false){
+                $this->constructorUsuario($resultado->fetch_assoc());
+                return true;
+            }else{
+                echo "Error en la consulta";
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 
+    /**
+     * Retorna un Array de los Usuarios en la Base de Datos.
+     * @return array
+     */
     public function all_usuarios(){
         global $baseDatos;
-        $sql = "SELECT * FROM usuarios";
+        $arrayUsuarios = array();
+        $sql = "SELECT * FROM `usuarios`";
         $resultado = $baseDatos->query($sql);
-        return $resultado->fetch_all(MYSQLI_ASSOC);
-
+        $arrayConsulta = $resultado->fetch_all(MYSQLI_ASSOC);
+        foreach ($arrayConsulta as $res){
+            $usuario = new Usuario();
+            $usuario->constructorUsuario($res);
+            $arrayUsuarios[] = $usuario;
+        }
+        return $arrayUsuarios;
     }
 
     /**
@@ -181,4 +238,19 @@ class Usuario{
         $this->bandera = $bandera;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * @param mixed $descripcion
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+    }
 }

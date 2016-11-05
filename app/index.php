@@ -65,6 +65,12 @@ if ($config["dbEngine"]=="MYSQL"){
 //-------------------		
 
 	$tpl->gotoBlock("_ROOT");
+    if (isset($_SESSION["usuario"])){
+        $tpl->assign("css","estilo_dario.css");
+    }else{
+        $tpl->assign("css","personal_lucas.css");
+    }
+
     $tpl->assign("menu",Menu_Controller::menu());
 	$tpl->assign("contenido",$html);
 	$webapp=$tpl->getOutputContent();

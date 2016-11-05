@@ -34,15 +34,18 @@ class Validacion{
             return 0;
     }
 
-    function pass($pass1,$pass2){
+    /**
+     * true si son iguales.
+     * @param $pass1
+     * @param $pass2
+     * @return bool
+     */
+    function pass($pass1, $pass2){
         if ($pass1 == $pass2){
-            return 1;
+            return true;
         }else{
-            return 0;
+            return false;
         }
-    }
-    function validar_login(){
-        //la funcion que tenes el el validar login..
     }
 
 }

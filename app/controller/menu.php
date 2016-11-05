@@ -18,7 +18,7 @@ class Menu_Controller{
 
     public static function menu()
     {
-        if (isset($_SESSION["permisos"])){
+        if (isset($_SESSION["usuario"])){
             $tpl = new TemplatePower("template/menu.html");
             $tpl->prepare();
             $tpl->gotoBlock("_ROOT");
@@ -34,7 +34,6 @@ class Menu_Controller{
             } else {
                 $tpl->newBlock("noReg");
             }
-
         }else{
             $tpl = new TemplatePower("template/menu_login.html");
             $tpl->prepare();

@@ -35,7 +35,7 @@ class LugarFavorito{
 
     public function lugares_usuario($user_id){
         global $baseDatos;
-        $sql = "SELECT id_lugar,nom_lugar,ubicacion,longitud,latitud FROM lugares_favoritos WHERE user_p = $user_id";
+        $sql = "SELECT id_lugar,nom_lugar,ubicacion,longitud,latitud FROM lugares_favoritos WHERE user_p = '$user_id'";
         $resultado = $baseDatos->query($sql);
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }

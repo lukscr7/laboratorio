@@ -35,8 +35,25 @@ class Login_Controller{
     }
 
 
+    function iniciarsesion(){
+        $us = new Usuario();
+        $usuario = $_POST["usuario_loguin"];
+        $pass = $_POST["pass_loguin"];
+        if ($us->verificarUsuario($usuario,$pass)){
+            $us->dat_usuario($usuario);
+            $_SESSION["usuario"] = $us->getUserId();
+            $_SESSION["permiso"] = $us->getPermisos();
+            header('Location: index.php');
+        }else{
+            print "EL usuario o contraseña esta mal";
+            header('Location: index.php');
+        }
+    }
 
+    public function cerrarSesion(){
+        session_destroy();
+        header('Location: index.php');
+    }
 
 
 }
-?>

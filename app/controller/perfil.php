@@ -15,10 +15,10 @@ class Perfil_Controller{
         $tp1->gotoBlock("_ROOT");
 
         //VALORES DE LA PAGINA
-        $tp1->assign("nombre_usuario",$us->getNomUs());
+        $tp1->assign("nombre_usuario",$us->getNomUs()." ".$us->getApeUs());
         $tp1->assign("tipo_usuario",$us->getPermisos());
         $tp1->assign("imagen_pasajero",$us->getFotoPerfil());
-        $tp1->assign("descripcion",""); //YA VEMOS SI LE PONEMOS DESCRIPCIÓN AL USUARIO
+        $tp1->assign("descripcion",$us->getDescripcion()); //YA VEMOS SI LE PONEMOS DESCRIPCIÓN AL USUARIO
         $tp1->assign("titulo_body","Historial de Viajes");
 
         //LUGARES FAVORITOS
@@ -50,5 +50,22 @@ class Perfil_Controller{
         //$viajes = new Viaje();
         //$tp1->newBlock();
         return $tp1->getOutputContent();
+    }
+
+    public function editarDatos(){
+
+        /*print_r($_POST);
+        print_r($_FILES);
+        $image = $_FILES["foto_perfil"];
+        $imagen = substr(strrchr($image['name'], "."), 1);
+        print "<br>Tipo del archivo imagen: .".$imagen;*/
+        $us = new Usuario();
+        $us->dat_usuario($_SESSION["usuario"]);
+        $res = $us->verificarModificacion($_POST,$_FILES["foto"]);
+        if ($res){
+            header('Location: index.php?alerta=Update');
+        }else{
+            header('Location: index.php?alerta=UpdateMal');
+        }
     }
 }

@@ -18,7 +18,15 @@ class Menu_Controller{
     private static $errores = array(        //Agregar mensajes de error AQUÍ
         "UsuarioMal" => array(
             "mensaje" => "Usuario o Contraseña Incorrecta",
-            "condicion" => "Correcto"
+            "condicion" => "Error"          //Correcto: Verde   Error: Rojo     Info: Azul
+        ),
+        "Update" => array(
+            "mensaje" => "Se Modificaron los Datos con Éxito!.",
+            "condicion" => "Correcto"       //Correcto: Verde   Error: Rojo     Info: Azul
+        ),
+        "UpdateMal" => array(
+            "mensaje" => "NO Se Modificaron los Datos.",
+            "condicion" => "Error"       //Correcto: Verde   Error: Rojo     Info: Azul
         )
     );
 

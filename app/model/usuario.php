@@ -84,7 +84,6 @@ class Usuario{
                 $this->constructorUsuario($resultado->fetch_assoc());
                 return true;
             }else{
-                echo "Error en la consulta";
                 return false;
             }
         }else{
@@ -108,6 +107,48 @@ class Usuario{
             $arrayUsuarios[] = $usuario;
         }
         return $arrayUsuarios;
+    }
+
+
+    /**
+     * Actualiza los datos del Usuario al que hace referencia.
+     * @return bool
+     */
+    public function update(){
+        global $baseDatos;
+        $us = $this->getUserId();
+        $nom = $this->getNomUs();
+        $ape = $this->getApeUs();
+        $correo = $this->getCorreo();
+        $des = $this->getDescripcion();
+        $foto = $this->getFotoPerfil();
+        $sql = "UPDATE `usuarios` 
+                SET `nom_us` = '$nom', `ape_us` = '$ape', `correo` = '$correo', `descripcion` = '$des', `foto_perfil` = '$foto' 
+                WHERE `usuarios`.`user_id` = '$us'";
+        $resultado = $baseDatos->query($sql);
+        return $resultado;
+    }
+
+    /**
+     * Verifica si se quiere cambiar la foto de perfil.
+     * @param $datPOST
+     * @param $datFILE["foto"]
+     * @return bool
+     */
+    public function verificarModificacion($datPOST, $datFILE){
+        global $baseDatos;
+        $this->setNomUs($baseDatos->real_escape_string($datPOST["nombre"]));
+        $this->setApeUs($baseDatos->real_escape_string($datPOST["apellido"]));
+        $this->setCorreo($baseDatos->real_escape_string($datPOST["email"]));
+        $this->setDescripcion($baseDatos->real_escape_string($datPOST["descripcion"]));
+        if (!$datFILE["size"] == 0){
+            $ruta = $datFILE["tmp_name"];
+            $tipo = substr(strrchr($datFILE['name'], "."), 1);
+            $destino = "../recursos/imagen/".$this->getUserId().".".$tipo;
+            copy($ruta,$destino);
+            $this->setFotoPerfil($destino);
+        }
+        return $this->update();
     }
 
     /**

@@ -60,38 +60,55 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h2 class="modal-title">Editar Perfil</h2>
             </div>
+
             <div class="modal-body">
-                <div class="form-group">
-                    <label for="nombre" class="control-label">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" onchange="validar_texto(this)"
-                           placeholder="Nombre Aquí">
-                </div>
-                <div class="form-group">
-                    <label for="apellido" class="control-label">Apellido:</label>
-                    <input type="text" class="form-control" id="apellido" onchange="validar_texto(this)"
-                           placeholder="Apellido Aquí">
-                </div>
-                <div id="contenedor_email" class="form-group">
-                    <label for="email" class="control-label">E-mail:</label>
-                    <input type="email" class="form-control" id="email" onchange="validar_email()"
-                           placeholder="ejemplo@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="descripcion">Descripción:</label>
-                    <textarea class="form-control" rows="3" maxlength="250" id="descripcion"
-                              placeholder="Comentario"></textarea>
-                </div>
+                <form action="index.php?action=Perfil::editarDatos" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nombre" class="control-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" onchange="validar_texto(this)"
+                               placeholder="Nombre Aquí" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido" class="control-label">Apellido:</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido"
+                               onchange="validar_texto(this)" placeholder="Apellido Aquí" required>
+                    </div>
+                    <div id="contenedor_email" class="form-group">
+                        <label for="email" class="control-label">E-mail:</label>
+                        <input type="email" class="form-control" id="email" name="email" onchange="validar_email()"
+                               placeholder="ejemplo@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <textarea class="form-control" rows="3" maxlength="250" name="descripcion" id="descripcion"
+                                  placeholder="Comentario"></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label>Foto de Perfil:</label>
-                    <script src="../../recursos/js/input_foto.js"></script>
-                    <input id="foto_perfil" name="foto_perfil[]" accept="image/*" type="file" class="file-loading">
-                </div>
-
+                    <div class="form-group">
+                        <label>Foto de Perfil:</label>
+                        <script>
+                            $(document).on('ready', function () {
+                                $("#foto").fileinput({
+                                    previewFileType: "image",
+                                    browseClass: "btn btn-success",
+                                    browseLabel: "  Imagen",
+                                    browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i>",
+                                    removeClass: "btn btn-danger",
+                                    removeLabel: "  Delete",
+                                    removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i>",
+                                    showUpload: false
+                                });
+                            });
+                        </script>
+                        <input id="foto" name="foto" accept="image/*" type="file" class="file-loading">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info">Guardar</button>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-info" data-dismiss="modal">Guardar</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
 
@@ -99,7 +116,7 @@
 </div>
 <!-- Fin Modal -->
 
-                                <!-- START BLOCK : modal.lugar.favoritos -->
+<!-- START BLOCK : modal.lugar.favoritos -->
 <!-- Modal Lugares Favoritos-->
 <div class="modal fade" id="lugarfavorito" role="dialog">
     <div class="modal-dialog">
@@ -131,7 +148,7 @@
     </div>
 </div>
 <!-- Fin Modal -->
-                                <!-- END BLOCK : modal.lugar.favoritos -->
+<!-- END BLOCK : modal.lugar.favoritos -->
 
 <!-- Cuerpo -->
 <section id="cuerpo_viajes">
@@ -140,7 +157,7 @@
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 contenedor-per">
             <h2 class="font-titulo-principal">{titulo_body}</h2>
 
-                                <!-- START BLOCK : tarjeta.viaje -->
+            <!-- START BLOCK : tarjeta.viaje -->
 
             <!--TARJETA QUE MUESTRA LA INFORMACIÓN DE UN VIAJE REALIZADO-->
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -186,9 +203,9 @@
             </div>
             <!--TARJETA QUE MUESTRA LA INFORMACIÓN DE UN VIAJE REALIZADO-->
 
-                                <!-- END BLOCK : tarjeta.viaje -->
+            <!-- END BLOCK : tarjeta.viaje -->
 
-                                    <!--NOTIFICACIONES-->
+            <!--NOTIFICACIONES-->
             <!-- START BLOCK : no.tarjeta.viaje -->
             <div class="alert alert-info">
                 <strong>Upps!</strong> No realizo ningún viaje aun.

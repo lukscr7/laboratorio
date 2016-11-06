@@ -36,27 +36,27 @@
                                 <label>Nombre</label> 
                               <div class="form-group login__row" align="center">  
                                     <span class="glyphicon glyphicon-user" ></span>
-                                    <input type="text" id="nombre" class="login__input2 name" placeholder=""/>
+                                    <input type="text" id="nombre_sinusuario" name="nombre_sinusuario" class="login__input2 name" placeholder=""/>
                               </div>
                            
                                 <!-- contenedor apellido -->
                                 <label>Apellido</label>
                               <div class="form-group login__row" align="center">
                                     <span class="glyphicon glyphicon-user" ></span>
-                                    <input type="text" id="apellido" class="login__input2 name" placeholder=""/>
+                                    <input type="text" id="apellido_sinusuario" name="apellido_sinusuario" class="login__input2 name" placeholder=""/>
                               </div>
                                 <!-- contenedor origen -->
-                                <label>Origen</label>
+                               <!-- <label>Origen</label>
                               <div class="form-group login__row" align="center">
                                      <span class="glyphicon glyphicon-search"></span>
                                     <input type="text" id="origen" class="login__input2 name" placeholder=""/>
-                              </div>
+                              </div> -->
                                 <!-- contenedor destino -->
-                                <label>Destino</label>
+                               <!-- <label>Destino</label>
                               <div class="form-group login__row" align="center">
                                     <span class="glyphicon glyphicon-home" ></span>
                                     <input type="text" id="destino" class="login__input2 name" placeholder=""/>
-                              </div>
+                              </div> -->
                                           
                                 <!-- contenedor boton de pedir remis -->
                               <div class="form-group" align="center">
@@ -152,22 +152,25 @@
                         
                     <!-- ventana contenido -->
                     <div class="modal-body">
-                        <label>Nombre</label><input type="text" class="form-control" placeholder="Nombre"><br>
-                        <label>Apellido</label><input type="text" class="form-control" placeholder="Apellido"><br>
+                        <label>Nombre</label><input type="text" name="nombre_perfil" class="form-control" placeholder="Nombre"><br>
+                        <label>Apellido</label><input type="text" name="apellido_perfil" class="form-control" placeholder="Apellido"><br>
                         <label>Nombre de Usuario</label>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">@</span>
-                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" name="usuario_perfil" placeholder="Username" aria-describedby="basic-addon1">
                         </div>
-                        <label>Contrase&ntilde;a</label><input type="password" class="form-control" placeholder="Contrase&ntilde;a"><br>
-                        <label>Confirmar Contrase&ntilde;a</label><input type="password" class="form-control" placeholder="Confirmar Contrase&ntilde;a"><br>
+                        <label>Contrase&ntilde;a</label><input type="password" name="pass_perfil" class="form-control" placeholder="Contrase&ntilde;a"><br>
+                        <label>Confirmar Contrase&ntilde;a</label><input type="password" name="confirmarpass_perfil" class="form-control" placeholder="Confirmar Contrase&ntilde;a"><br>
                         <section class="col-9">
-                            <label>Direccion</label><input type="text" class="form-control" placeholder="Direccion">
+                            <label>Direccion</label><input type="text" name="direccion_perfil" class="form-control" placeholder="Direccion">
                         </section>
                         <section class="col-3">
-                            <label>Numero de casa</label><input type="number" class="form-control" placeholder="">
+                            <label>Numero de casa</label><input type="number" name="nro_casa_perfil" class="form-control" placeholder="">
                         </section>
-                        <label>Telefono</label><input type="number" minlength="8" maxlength="13" class="form-control" placeholder="Numero de Telefono"><br>
+                        <label>Correo</label><input type="email" name="correo_perfil"  class="form-control" placeholder="ejemplo@dominio"><br>
+                    </div>
+                    <div>
+                        <input id="foto_perfil" name="foto_perfil" accept="image/*" type="file" class="file-loading">
                     </div>
                     <!-- footer de la ventana -->
                     <div class="row modal-footer">

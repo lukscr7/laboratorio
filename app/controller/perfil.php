@@ -18,7 +18,7 @@ class Perfil_Controller{
         $tp1->assign("nombre_usuario",$us->getNomUs()." ".$us->getApeUs());
         $tp1->assign("tipo_usuario",$us->getPermisos());
         $tp1->assign("imagen_pasajero",$us->getFotoPerfil());
-        $tp1->assign("descripcion",$us->getDescripcion()); //YA VEMOS SI LE PONEMOS DESCRIPCIÓN AL USUARIO
+        $tp1->assign("descripcion",""); //YA VEMOS SI LE PONEMOS DESCRIPCIÓN AL USUARIO
         $tp1->assign("titulo_body","Historial de Viajes");
 
         //LUGARES FAVORITOS

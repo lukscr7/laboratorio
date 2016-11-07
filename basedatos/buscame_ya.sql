@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2016 a las 13:28:13
+-- Tiempo de generación: 07-11-2016 a las 14:40:45
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.8
 
@@ -113,7 +113,13 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`user_id`, `pass`, `nom_us`, `ape_us`, `correo`, `permisos`, `foto_perfil`, `bandera`) VALUES
 ('dario', '123456', 'Dario', 'Flores', 'dario_flores321@hotmail.com', 'ADMIN', '../recursos/imagen/perfil/cliente/dario.jpg', 'ACTIVO'),
-('lucas', '123456', 'Lucas', 'Diaz', 'cr7@gmail.com', 'CLIENTE', '../recursos/imagen/perfil/cliente/lucas.jpg', 'ACTIVO');
+('dasa', 'dsa', 'asddsa', 'adsads', 'darioexequiel22@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
+('dsada', '123', 'dsa', 'das', 'darioexequiel22@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
+('felipe2', '123', 'agustin', 'feliciano', 'ju@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
+('lucas', '123456', 'Lucas', 'Diaz', 'cr7@gmail.com', 'CLIENTE', '../recursos/imagen/perfil/cliente/lucas.jpg', 'ACTIVO'),
+('www', 'www', 'wwww', 'wwwww', 'www@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
+('wwww', 'www', 'www', 'wwwww', 'www@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
+('wwwww', 'www', 'wwwww', 'wwwww', 'www@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO');
 
 -- --------------------------------------------------------
 

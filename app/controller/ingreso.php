@@ -10,8 +10,15 @@ class Ingreso_Controller{
     public static function main(){
 
         if (isset($_SESSION["usuario"])){
-            $perfil = new Perfil_Controller();
-            $webapp = $perfil->cliente();
+            if ($_SESSION["permiso"] == "CLIENTE"){
+                $perfil = new Perfil_Controller();
+                $webapp = $perfil->cliente();
+            }
+            if ($_SESSION["permiso"] == "ADMIN"){
+                $admin = new Administrador_Controller();
+                $webapp = $admin->admin();
+            }
+
         }else{
             $tpl = new TemplatePower("template/login.html");
             $tpl->prepare();

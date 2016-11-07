@@ -91,20 +91,25 @@ class Usuario{
 
     /**
      * Retorna un Array de los Usuarios en la Base de Datos.
-     * @return array
+     * @return Usuario[]
      */
     public function all_usuarios(){
         global $baseDatos;
         $arrayUsuarios = array();
-        $sql = "SELECT * FROM `usuarios`";
-        $resultado = $baseDatos->query($sql);
-        $arrayConsulta = $resultado->fetch_all(MYSQLI_ASSOC);
-        foreach ($arrayConsulta as $res){
-            $usuario = new Usuario();
-            $usuario->constructorUsuario($res);
-            $arrayUsuarios[] = $usuario;
+        if ($this->existeUsuario()){
+            $sql = "SELECT * FROM `usuarios`";
+            $resultado = $baseDatos->query($sql);
+            $arrayConsulta = $resultado->fetch_all(MYSQLI_ASSOC);
+            foreach ($arrayConsulta as $res){
+                $usuario = new Usuario();
+                $usuario->constructorUsuario($res);
+                $arrayUsuarios[] = $usuario;
+            }
+            return $arrayUsuarios;
+        }else{
+            return null;
         }
-        return $arrayUsuarios;
+
     }
 
 

@@ -13,6 +13,7 @@ include("controller/ingreso.php");
 include("controller/perfil.php");
 include("controller/menu.php");
 include("controller/login.php");
+include ("controller/administrador.php");
 
 include ("model/usuario.php");
 include("model/combi.php");

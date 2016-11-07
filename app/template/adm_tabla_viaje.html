@@ -1,0 +1,39 @@
+   <h1 align="center">Administrar Viajes</h1>
+   <div class="col-xs-offset-1"></div>
+   <div class="col-lg-11" align="center">
+       <h3>¿desea dar de alta a un VIAJE?</h3> <button type="button" class="btn btn-info">Alta</button>
+   </div>
+   <div class="col-xs-offset-1"></div>
+   <div class="col-lg-11">
+       <table>
+           <tr>
+               <th>Id</th>
+               <th>Origen</th>
+               <th>Destino</th>
+               <th>Costo</th>
+               <th>Modificar</th>
+               <th>Baja</th>
+           </tr>
+           <!-- START BLOCK : body -->
+           <tr>
+               <td>{id_viaje}</td>
+               <td>{origen}</td>
+               <td>{destino}</td>
+               <td>{costo}</td>
+               <td>
+                   <form method="post" action="#">
+                       <input value="{id_viaje}" type="hidden" name="id_viaje">
+                       <button type="submit" class="btn btn-info">Modificar</button>
+                   </form>
+                   <form method="post" action="#">
+                       <input value="{id_viaje}" type="hidden" name="id_viaje">
+                       <button type="submit" class="btn btn-info">Baja</button>
+                   </form>
+               </td>
+           </tr>
+           <!-- END BLOCK : body -->
+       </table>
+
+   </div>
+
+

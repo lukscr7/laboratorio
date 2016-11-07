@@ -1,0 +1,45 @@
+<h1 align="center">Administrar Usuarios</h1>
+<div class="col-xs-offset-1"></div>
+<div class="col-lg-11" align="center">
+    <h3>¿desea dar de alta a un USUARIO?</h3>
+    <button type="button" class="btn btn-success">Alta</button>
+</div>
+<div class="col-xs-offset-1"></div>
+<div class="col-lg-11">
+    <table>
+        <tr>
+            <th>Usuario</th>
+            <th>Contraseña</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Permisos</th>
+            <th>Foto Perfil</th>
+            <th>Modificar</th>
+            <th>Baja</th>
+        </tr>
+        <!-- START BLOCK : body -->
+        <tr>
+            <td>{id_c}</td>
+            <td>{pass}</td>
+            <td>{nombre}</td>
+            <td>{apellido}</td>
+            <td>{correo}</td>{
+            <td>{permisos}</td>
+            <td>{foto_perfil}</td>
+            <td>
+                <form method="post" action="#">
+                    <input value="{id_c}" type="hidden" name="id_viaje">
+                    <button type="submit" class="btn btn-success">Hacer Administrador</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="#">
+                    <input value="{id_c}" type="hidden" name="id_viaje">
+                    <button type="submit" class="btn btn-success">Baja</button>
+                </form>
+            </td>
+        </tr>
+        <!-- END BLOCK : body -->
+    </table>
+</div>

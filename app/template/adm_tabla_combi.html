@@ -1,0 +1,45 @@
+<h1 align="center">Administrar Combis</h1>
+<div class="col-xs-offset-1"></div>
+<div class="col-lg-11" align="center">
+    <h3>¿desea dar de alta a un COMBI?</h3>
+    <button type="button" class="btn btn-danger">Alta</button>
+</div>
+<div class="col-xs-offset-1"></div>
+<div class="col-lg-11">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Patente</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Color</th>
+            <th>Cantidad de Asientos</th>
+            <th>Modificar</th>
+            <th>Baja</th>
+        </tr>
+        id_combi`, `patente`, `marca`, `modelo`,
+        `color`, `cant_asientos`, `estado
+        <!-- START BLOCK : body -->
+        <tr>
+            <td>{id_combi}</td>
+            <td>{patente}</td>
+            <td>{marca}</td>
+            <td>{modelo}</td>
+            <td>{color}</td>{
+            <td>{cant_asientos}</td>
+            <td>
+                <form method="post" action="#">
+                    <input value="{id_combi}" type="hidden" name="id_viaje">
+                    <button type="submit" class="btn btn-danger">Hacer Administrador</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="#">
+                    <input value="{id_combi}" type="hidden" name="id_viaje">
+                    <button type="submit" class="btn btn-danger">Baja</button>
+                </form>
+            </td>
+        </tr>
+        <!-- END BLOCK : body -->
+    </table>
+</div>

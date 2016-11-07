@@ -65,7 +65,7 @@ class Registros_Controller
                 $tp1->assign("apellido", $res->getApellido());
                 $tp1->assign("telefono", $res->getTelefono());
                 $tp1->assign("correo", $res->getCorreo());
-                $tp1->assign("estado", $res->getCorreo());
+                $tp1->assign("estado", $res->getEstado());
                 $tp1->assign("foto_perfil", $res->getFotoPerfil());
             }
         }

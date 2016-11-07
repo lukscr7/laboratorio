@@ -7,52 +7,59 @@
  */
 
 class Conductor{
-
+                                //`id_c``nombre``apellido``foto_perfil``telefono``correo``estado`
     private $id_c;
-    private $user_id_c;
-    private $id_e;
+    private $nombre;
+    private $apellido;
+    private $foto_perfil;
+    private $telefono;
+    private $correo;
     private $estado;
-    private $id_auto;
 
     /**
-     * Crea un Objeto Conductor a partir de un array que surge de una consulta a la base de datos.
+     * Asigna los datos
      * @param $array
      */
-    public function constructorConductor($array)
+    private function constructorConductor($array)
     {
         $this->id_c = $array["id_c"];
-        $this->user_id_c = $array["user_id_c"];
-        $this->id_e = $array["id_e"];
+        $this->nombre = $array["nombre"];
+        $this->apellido = $array["apellido"];
+        $this->foto_perfil = $array["foto_perfil"];
+        $this->telefono = $array["telefono"];
+        $this->correo = $array["correo"];
         $this->estado = $array["estado"];
-        $this->id_auto = $array["id_auto"];
     }
 
 
     /**
      * Crea un Objeto Conductor a partir de un id_c
      * @param $id_c
-     * @return Conductor
+     * @return Conductor|null
      */
     public function conductor_id($id_c){
         global $baseDatos;
-        $conductor = new Conductor();
-        $sql = "SELECT * FROM conductores WHERE id_c = '$id_c'";
-        $resultado = $baseDatos->query($sql);
-        $con = $resultado->fetch_assoc();
-        $conductor->constructorConductor($con);
-        return $conductor;
+        if ($this->existeConductorID($id_c)){
+            $conductor = new Conductor();
+            $sql = "SELECT * FROM conductores WHERE id_c = '$id_c'";
+            $resultado = $baseDatos->query($sql);
+            $con = $resultado->fetch_assoc();
+            $conductor->constructorConductor($con);
+            return $conductor;
+        }else{
+            return null;
+        }
     }
 
     /**
-     * Devuelve un listado de los Conductores que tiene una Empresa con id_e
-     * @param $id_e
+     * Devuelve un listado de los Conductores
      * @return Conductor[]|null
      */
-    public function allConductoresEmpresa($id_e){
+    public function allConductores(){
         global $baseDatos;
         $listaConductores = array();
-        if ($this->existeConductorEmpresa($id_e)){
-            $sql = "SELECT * FROM `conductores` WHERE `id_e` = '$id_e'";
+        if ($this->existeConductor()){
+            $sql = "SELECT * FROM `conductores`";
             $resultado = $baseDatos->query($sql);
             $conductores = $resultado->fetch_all(MYSQLI_ASSOC);
             foreach ($conductores as $con){
@@ -64,22 +71,68 @@ class Conductor{
         }else{
             return null;
         }
-
     }
 
     /**
-     * Consulta si tiene algún Conductor la Empresa con id_e
-     * @param $id_e
+     * Consulta si tiene algún Conductor ID
      * @return bool
      */
-    public function existeConductorEmpresa($id_e){
+    public function existeConductorID($id_c){
         global $baseDatos;
-        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `conductores` WHERE `id_e` = '$id_e'");
+        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `conductores` WHERE `id_c` = '$id_c'");
         $res = $results->fetch_assoc();
         if ($res["cant"] != 0){
             return true;
         }else{
             return false;
+        }
+    }
+
+    /**
+     * Consulta si tiene algún Conductor
+     * @return bool
+     */
+    public function existeConductor(){
+        global $baseDatos;
+        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `conductores`");
+        $res = $results->fetch_assoc();
+        if ($res["cant"] != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Consulta si tiene algún Conductor LIBRE
+     * @return bool
+     */
+    public function existeConductorLibre(){
+        global $baseDatos;
+        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `conductores` WHERE `estado` = 'LIBRE'");
+        $res = $results->fetch_assoc();
+        if ($res["cant"] != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * asigna a un Conductor para un Viaje
+     * @return Conductor|null
+     */
+    public function asignar(){
+        global $baseDatos;
+        if ($this->existeConductorLibre()){
+            $conductor = new Conductor();
+            $sql = "SELECT * FROM conductores WHERE `estado` = 'LIBRE'";
+            $resultado = $baseDatos->query($sql);
+            $con = $resultado->fetch_assoc();
+            $conductor->constructorConductor($con);
+            return $conductor;
+        }else{
+            return null;
         }
     }
 
@@ -102,33 +155,81 @@ class Conductor{
     /**
      * @return mixed
      */
-    public function getUserIdC()
+    public function getNombre()
     {
-        return $this->user_id_c;
+        return $this->nombre;
     }
 
     /**
-     * @param mixed $user_id_c
+     * @param mixed $nombre
      */
-    public function setUserIdC($user_id_c)
+    public function setNombre($nombre)
     {
-        $this->user_id_c = $user_id_c;
+        $this->nombre = $nombre;
     }
 
     /**
      * @return mixed
      */
-    public function getIdE()
+    public function getApellido()
     {
-        return $this->id_e;
+        return $this->apellido;
     }
 
     /**
-     * @param mixed $id_e
+     * @param mixed $apellido
      */
-    public function setIdE($id_e)
+    public function setApellido($apellido)
     {
-        $this->id_e = $id_e;
+        $this->apellido = $apellido;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFotoPerfil()
+    {
+        return $this->foto_perfil;
+    }
+
+    /**
+     * @param mixed $foto_perfil
+     */
+    public function setFotoPerfil($foto_perfil)
+    {
+        $this->foto_perfil = $foto_perfil;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * @param mixed $telefono
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+    /**
+     * @param mixed $correo
+     */
+    public function setCorreo($correo)
+    {
+        $this->correo = $correo;
     }
 
     /**
@@ -147,20 +248,5 @@ class Conductor{
         $this->estado = $estado;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIdAuto()
-    {
-        return $this->id_auto;
-    }
-
-    /**
-     * @param mixed $id_auto
-     */
-    public function setIdAuto($id_auto)
-    {
-        $this->id_auto = $id_auto;
-    }
 
 }

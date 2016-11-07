@@ -7,7 +7,7 @@
  */
 class Perfil_Controller{
 
-    public function pasajero(){
+    public function cliente(){
         $us = new Usuario(); //PIDO LOS DATOS DEL USUARIO
         $us->dat_usuario($_SESSION["usuario"]);
         $tp1 = new TemplatePower("template/perfil.html");
@@ -19,32 +19,10 @@ class Perfil_Controller{
         $tp1->assign("tipo_usuario",$us->getPermisos());
         $tp1->assign("imagen_pasajero",$us->getFotoPerfil());
         $tp1->assign("descripcion",""); //YA VEMOS SI LE PONEMOS DESCRIPCIÓN AL USUARIO
-        $tp1->assign("titulo_body","Historial de Viajes");
+        $tp1->assign("titulo_body","Historial de Reservas");
 
-        //LUGARES FAVORITOS
-        $tp1->newBlock("boton.lugar.favoritos"); // CREO EL BOTÓN DE LUGARES FAVORITOS
-        $tp1->newBlock("modal.lugar.favoritos"); // CREO EL MODEL DEL BOTÓN DE LUGARES FAVORITOS
-
-        //CREACIÓN DE LOS LUGARES FAVORITOS
-        $tp1->newBlock("modal.lugar.favoritos");
-
-        //DEBERÍA IR EN OTRO CONTROLLER PERO NAAAA
-        $lugaresFavoritos = new TemplatePower("template/lista.lugares.favoritos.html");
-        $lugaresFavoritos->prepare();
-        $lugaresFavoritos->gotoBlock("_ROOT");
-        $lf = new LugarFavorito($us->getUserId());
-        if (count($lf->getLugares()) > 0) {
-            foreach ($lf->getLugares() as $lugar) {
-                $lugaresFavoritos->newBlock("LF");
-                $lugaresFavoritos->assign("EtiquetaLF", $lugar["nom_lugar"]);
-                $lugaresFavoritos->assign("direccion", $lugar["ubicacion"]);
-            }
-        }else{
-            $lugaresFavoritos->newBlock("noLF");
-        }
-        //FIN DEBERÍA IR EN OTRO CONTROLLER PERO NAAAA
-
-        $tp1->assign("listaLugaresFavoritos",$lugaresFavoritos->getOutputContent());
+        $tp1->newBlock("editarPerfil");
+        $tp1->newBlock("modalPerfil");
 
         //TARJETAS DE VIAJES REALIZADOS
         //$viajes = new Viaje();

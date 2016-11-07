@@ -11,7 +11,7 @@ class Ingreso_Controller{
 
         if (isset($_SESSION["usuario"])){
             $perfil = new Perfil_Controller();
-            $webapp = $perfil->pasajero();
+            $webapp = $perfil->cliente();
         }else{
             $tpl = new TemplatePower("template/login.html");
             $tpl->prepare();

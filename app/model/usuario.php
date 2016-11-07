@@ -8,12 +8,11 @@
 
 class Usuario{
 
-    private $user_id;           //`user_id``pass``nom_us``ape_us``correo``descripcion``permisos``foto_perfil``bandera`
+    private $user_id;           //`user_id``pass``nom_us``ape_us``correo``permisos``foto_perfil``bandera`
     private $pass;
     private $nom_us;
     private $ape_us;
     private $correo;
-    private $descripcion;
     private $permisos;
     private $foto_perfil;
     private $bandera;
@@ -29,7 +28,6 @@ class Usuario{
         $this->nom_us = $array["nom_us"];
         $this->ape_us = $array["ape_us"];
         $this->correo = $array["correo"];
-        $this->descripcion = $array["descripcion"];
         $this->permisos = $array["permisos"];
         $this->foto_perfil = $array["foto_perfil"];
         $this->bandera = $array["bandera"];
@@ -120,10 +118,9 @@ class Usuario{
         $nom = $this->getNomUs();
         $ape = $this->getApeUs();
         $correo = $this->getCorreo();
-        $des = $this->getDescripcion();
         $foto = $this->getFotoPerfil();
         $sql = "UPDATE `usuarios` 
-                SET `nom_us` = '$nom', `ape_us` = '$ape', `correo` = '$correo', `descripcion` = '$des', `foto_perfil` = '$foto' 
+                SET `nom_us` = '$nom', `ape_us` = '$ape', `correo` = '$correo', `foto_perfil` = '$foto' 
                 WHERE `usuarios`.`user_id` = '$us'";
         $resultado = $baseDatos->query($sql);
         return $resultado;
@@ -140,7 +137,6 @@ class Usuario{
         $this->setNomUs($baseDatos->real_escape_string($datPOST["nombre"]));
         $this->setApeUs($baseDatos->real_escape_string($datPOST["apellido"]));
         $this->setCorreo($baseDatos->real_escape_string($datPOST["email"]));
-        $this->setDescripcion($baseDatos->real_escape_string($datPOST["descripcion"]));
         if (!$datFILE["size"] == 0){
             $ruta = $datFILE["tmp_name"];
             $tipo = substr(strrchr($datFILE['name'], "."), 1);
@@ -277,21 +273,5 @@ class Usuario{
     public function setBandera($bandera)
     {
         $this->bandera = $bandera;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescripcion()
-    {
-        return $this->descripcion;
-    }
-
-    /**
-     * @param mixed $descripcion
-     */
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
     }
 }

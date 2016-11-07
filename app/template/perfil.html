@@ -8,42 +8,21 @@
                 <div class="centrado">
                     <img src="{imagen_pasajero}" class="img-perfil centrado"
                          alt="foto de perfil">
-
-
-                    <!-- ESTRELLAS SOLO PARA CONDUCTOR -->
-                    <!-- START BLOCK : estrella_conductor -->
-                    <input id="input-7-xs" class="rating rating-loading" value="0" data-min="0" data-max="5"
-                           data-step="0.5" data-size="xs" data-show-clear="false" data-show-caption="false"/>
-                    <!-- END BLOCK : estrella_conductor -->
-                    <!-- FIN ESTRELLAS SOLO PARA CONDUCTOR -->
-
-
                 </div>
             </div>
             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
                 <h1 class="text-centrado">{nombre_usuario}</h1>
                 <h1 class=" text-centrado">{tipo_usuario}</h1>
             </div>
-            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-                <h4 class="text-centrado">{descripcion}</h4>
-            </div>
-            <div class="col-xs-12 text-centrado">
+            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 text-centrado">
 
                 <!--BOTÓN EDITAR PERFIL-->
-                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#editarperfil">Editar
+                <!-- START BLOCK : editarPerfil -->
+                <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#editarperfil">Editar
                     Perfil
                 </button>
+                <!-- END BLOCK : editarPerfil -->
                 <!--FIN BOTÓN EDITAR PERFIL-->
-
-                <!--BOTÓN LUGARES FAVORITOS-->
-                <!-- START BLOCK : boton.lugar.favoritos -->
-                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#lugarfavorito">
-                    Lugares Favoritos
-                </button>
-                <!-- END BLOCK : boton.lugar.favoritos -->
-                <!--FIN BOTÓN LUGARES FAVORITOS-->
-
-
             </div>
         </div>
     </div>
@@ -51,6 +30,7 @@
 
 
 <!-- Modal Editar Perfil-->
+                                <!-- START BLOCK : modalPerfil -->
 <div class="modal fade" id="editarperfil" role="dialog">
     <div class="modal-dialog">
 
@@ -78,12 +58,6 @@
                         <input type="email" class="form-control" id="email" name="email" onchange="validar_email()"
                                placeholder="ejemplo@example.com" required>
                     </div>
-                    <div class="form-group">
-                        <label for="descripcion">Descripción:</label>
-                        <textarea class="form-control" rows="3" maxlength="250" name="descripcion" id="descripcion"
-                                  placeholder="Comentario"></textarea>
-                    </div>
-
                     <div class="form-group">
                         <label>Foto de Perfil:</label>
                         <script>
@@ -114,41 +88,9 @@
 
     </div>
 </div>
+                                    <!-- END BLOCK : modalPerfil -->
 <!-- Fin Modal -->
 
-<!-- START BLOCK : modal.lugar.favoritos -->
-<!-- Modal Lugares Favoritos-->
-<div class="modal fade" id="lugarfavorito" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title">Lugares Favoritos</h2>
-            </div>
-            <div class="modal-body">
-
-
-                <div class="form-group">
-                    <label for="direccion" class="control-label">Lugares:</label>
-                    {listaLugaresFavoritos}
-                    <div class="form-group">
-                        <label for="direccion" class="control-label">Direccion:</label>
-                        <input type="text" class="form-control" id="direccion"
-                               placeholder="Ejemplo: Avenida Belgrano 238">
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Guardar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-<!-- Fin Modal -->
-<!-- END BLOCK : modal.lugar.favoritos -->
 
 <!-- Cuerpo -->
 <section id="cuerpo_viajes">
@@ -157,7 +99,7 @@
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 contenedor-per">
             <h2 class="font-titulo-principal">{titulo_body}</h2>
 
-            <!-- START BLOCK : tarjeta.viaje -->
+            <!-- START BLOCK : tarjetaViaje -->
 
             <!--TARJETA QUE MUESTRA LA INFORMACIÓN DE UN VIAJE REALIZADO-->
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -203,14 +145,14 @@
             </div>
             <!--TARJETA QUE MUESTRA LA INFORMACIÓN DE UN VIAJE REALIZADO-->
 
-            <!-- END BLOCK : tarjeta.viaje -->
+            <!-- END BLOCK : tarjetaViaje -->
 
             <!--NOTIFICACIONES-->
-            <!-- START BLOCK : no.tarjeta.viaje -->
+            <!-- START BLOCK : notarjetaViaje -->
             <div class="alert alert-info">
                 <strong>Upps!</strong> No realizo ningún viaje aun.
             </div>
-            <!-- END BLOCK : no.tarjeta.viaje -->
+            <!-- END BLOCK : notarjetaViaje -->
 
         </div>
     </div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2016 a las 14:40:45
+-- Tiempo de generación: 07-11-2016 a las 17:19:07
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.8
 
@@ -41,7 +41,7 @@ CREATE TABLE `combi` (
 --
 
 INSERT INTO `combi` (`id_combi`, `patente`, `marca`, `modelo`, `color`, `cant_asientos`, `estado`) VALUES
-(1, 'ICJ 628', 'Ferrari', 'V1.7', 'Rojo', '40', 'OCUPADO');
+(1, 'ICJ 628', 'Ferrari', 'V1.7', 'Rojo', '40', 'LIBRE');
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE `conductores` (
 --
 
 INSERT INTO `conductores` (`id_c`, `nombre`, `apellido`, `foto_perfil`, `telefono`, `correo`, `estado`) VALUES
-(1, 'Fulanito', 'Fulano', '../recursos/imagen/ImagenPorDefecto.png', '3834578983', 'dario_flores321@hotmail.com', 'OCUPADO');
+(1, 'Fulanito', 'Fulano', '../recursos/imagen/ImagenPorDefecto.png', '3834578983', 'dario_flores321@hotmail.com', 'LIBRE');
 
 -- --------------------------------------------------------
 
@@ -82,13 +82,6 @@ CREATE TABLE `reservas` (
   `hora` time NOT NULL,
   `id_reserva` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `reservas`
---
-
-INSERT INTO `reservas` (`user_id`, `id_c`, `id_viaje`, `id_combi`, `costo`, `fecha`, `hora`, `id_reserva`) VALUES
-('lucas', 1, 2, 1, 280, '2016-11-10', '05:23:00', 3);
 
 -- --------------------------------------------------------
 
@@ -113,13 +106,12 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`user_id`, `pass`, `nom_us`, `ape_us`, `correo`, `permisos`, `foto_perfil`, `bandera`) VALUES
 ('dario', '123456', 'Dario', 'Flores', 'dario_flores321@hotmail.com', 'ADMIN', '../recursos/imagen/perfil/cliente/dario.jpg', 'ACTIVO'),
-('dasa', 'dsa', 'asddsa', 'adsads', 'darioexequiel22@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
+('dasa', 'dsa', 'asddsa', 'adsads', 'darioexequiel22@gmail.com', 'ADMIN', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
 ('dsada', '123', 'dsa', 'das', 'darioexequiel22@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
 ('felipe2', '123', 'agustin', 'feliciano', 'ju@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
 ('lucas', '123456', 'Lucas', 'Diaz', 'cr7@gmail.com', 'CLIENTE', '../recursos/imagen/perfil/cliente/lucas.jpg', 'ACTIVO'),
 ('www', 'www', 'wwww', 'wwwww', 'www@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
-('wwww', 'www', 'www', 'wwwww', 'www@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO'),
-('wwwww', 'www', 'wwwww', 'wwwww', 'www@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO');
+('wwww', 'www', 'www', 'wwwww', 'www@gmail.com', 'CLIENTE', '../recursos/imagen/ImagenPorDefecto.png', 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -195,12 +187,12 @@ ALTER TABLE `combi`
 -- AUTO_INCREMENT de la tabla `conductores`
 --
 ALTER TABLE `conductores`
-  MODIFY `id_c` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_c` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id_reserva` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_reserva` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `viajes`
 --

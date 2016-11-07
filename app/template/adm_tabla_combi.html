@@ -1,4 +1,4 @@
-<header>
+<>
     <div class="row margen">
         <div class="col-lg-1 col-md-1 eliminar">
         </div>
@@ -8,7 +8,7 @@
             <div class="col-lg-12" align="center">
                 <h3 class="col-lg-12">¿desea dar de alta a un COMBI?</h3>
                 <div class="col-lg-5"></div>
-                <button type="button" class="btn btn-danger col-lg-2">Alta</button>
+                <button type="button" class="btn btn-danger col-lg-2" >Alta</button>
             </div>
             <div class="col-lg-1"></div>
             <div class="col-lg-10 col-md-10 col-xs-12" align="center">
@@ -23,8 +23,6 @@
                         <th>Modificar</th>
                         <th>Baja</th>
                     </tr>
-                    id_combi`, `patente`, `marca`, `modelo`,
-                    `color`, `cant_asientos`, `estado
                     <!-- START BLOCK : body -->
                     <tr>
                         <td>{id_combi}</td>
@@ -32,7 +30,6 @@
                         <td>{marca}</td>
                         <td>{modelo}</td>
                         <td>{color}</td>
-                        {
                         <td>{cant_asientos}</td>
                         <td>
                             <form method="post" action="#">
@@ -52,10 +49,13 @@
                 <br>
                 <div class="col-lg-12" align="center">
                     <div class="col-lg-4"></div>
-                    <button type="button" class="btn btn-primary col-lg-4">Regresar a la pagina del Administrador
+                    <form action="index.php">
+                        <button type="submit" class="btn btn-primary col-lg-4">Regresar a la pagina del Administrador
+                    </form>
                     </button>
                 </div>
             </div>
         </div>
     </div>
-</header>
+
+

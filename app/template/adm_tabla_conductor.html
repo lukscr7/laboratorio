@@ -9,8 +9,7 @@
                 <h3 class="col-lg-12">¿desea dar de alta a un CONDUCTOR?</h3>
                 <div class="col-lg-5"></div>
                 <button type="button" class="btn btn-warning col-lg-2" href="#contenedor_ventana_flotante"
-                        data-toggle="modal"> >Alta
-                </button>
+                        data-toggle="modal"> >Alta </button>
             </div>
             <div class="col-lg-1"></div>
             <div class="col-lg-10 col-md-10 col-xs-12" align="center">
@@ -53,9 +52,65 @@
                 <br>
                 <div class="col-lg-12" align="center">
                     <div class="col-lg-4"></div>
-                    <button type="button" class="btn btn-primary col-lg-4">Regresar a la pagina del Administrador
+                    <form action="index.php">
+                        <button type="submit" class="btn btn-primary col-lg-4">Regresar a la pagina del Administrador
+                    </form>
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- ventana flotante-->
+    <div id="contenedor_ventana_flotante" class="modal fade">
+        <div class="modal-dialog">
+            <!-- contenedor de la ventana flotante -->
+            <div class="modal-content">
+                <!-- cabeza de la ventana -->
+                <div class="modal-header">
+                    <!-- boton cerrar cruz -->
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <!-- titulo - ventana flotante -->
+                    <h3 class="modal-title">Registro</h3>
+                </div>
+                <!-- formulario -->
+                <form name="formulario" id="formulario" action="index.php?action=Login::registrarUsuario"
+                      method="POST">
+
+                    <!-- ventana contenido -->
+                    <div class="modal-body">
+                        <label>Nombre</label><input type="text" id="nombre_perfil" name="nombre_perfil"
+                                                    class="form-control" placeholder="Nombre" required><br>
+                        <label>Apellido</label><input type="text" id="apellido_perfil" name="apellido_perfil"
+                                                      class="form-control" placeholder="Apellido" required><br>
+                        <label>Nombre de Usuario</label>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">@</span>
+                            <input type="text" class="form-control" id="usuario_perfil" name="usuario_perfil"
+                                   placeholder="Username" aria-describedby="basic-addon1" required>
+                        </div>
+                        <label>Contraseña</label><input type="password" id="pass_perfil" name="pass_perfil"
+                                                        class="form-control" placeholder="Contrase&ntilde;a"
+                                                        required><br>
+                        <label>Confirmar Contrase&ntilde;a</label><input type="password" id="pass2_perfil"
+                                                                         name="pass2_perfil"
+                                                                         class="form-control"
+                                                                         placeholder="Confirmar Contrase&ntilde;a"
+                                                                         required><br>
+                        <label>Correo</label><input type="email" id="correo_perfil" name="correo_perfil"
+                                                    class="form-control" placeholder="ejemplo@dominio" required><br>
+                    </div>
+                    <div>
+                        <!--<input id="foto_perfil" name="foto_perfil" accept="image/*" type="file" class="file-loading"> -->
+                    </div>
+                    <!-- footer de la ventana -->
+                    <!-- START BLOCK : notReg -->
+                    {mensaje}
+                    <!-- END BLOCK : notReg -->
+                    <div class="row modal-footer">
+                        <button type="reset" class="btn btn-default" data-dismiss="modal"> Cerrar</button>
+                        <button type="submit" class="btn btn-primary"> Registrar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

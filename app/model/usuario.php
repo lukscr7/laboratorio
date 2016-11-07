@@ -195,6 +195,18 @@ class Usuario
     }
 
     /**
+     * Da de BAJA al Usuario referenciado.
+     * @return bool
+     */
+    public function baja(){
+        global $baseDatos;
+        $user_id = $this->getUserId();
+        $sql = "DELETE FROM `usuarios` WHERE `usuarios`.`user_id` = '$user_id'";
+        $res = $baseDatos->query($sql);
+        return $res;
+    }
+
+    /**
      * @return mixed
      */
     public function getUserId()

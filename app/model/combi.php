@@ -131,7 +131,7 @@ class Combi{
             $sql = "SELECT * FROM `combis`";
             $arrayCombis = array();
             $resultado = $baseDatos->query($sql);
-            $arrayConsulta = $resultado->fetch_array(MYSQLI_ASSOC);
+            $arrayConsulta = $resultado->fetch_all(MYSQLI_ASSOC);
             foreach ($arrayConsulta as $res){
                 $combi = new Combi();
                 $combi->constructorCombi($res);
@@ -141,6 +141,18 @@ class Combi{
         }else{
             return null;
         }
+    }
+
+    /**
+     * Da de BAJA al Usuario referenciado.
+     * @return bool
+     */
+    public function baja(){
+        global $baseDatos;
+        $user_id = $this->getIdCombi();
+        $sql = "DELETE FROM `usuarios` WHERE `usuarios`.`user_id` = '$user_id'";
+        $res = $baseDatos->query($sql);
+        return $res;
     }
 
     /**

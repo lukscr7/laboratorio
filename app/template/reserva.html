@@ -3,7 +3,7 @@
         <div class="col-lg-1 col-md-1 eliminar">
         </div>
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 contenedor-per">
-            <form>
+            <form method="post" action="index.php?action=Reserva::agregarReserva">
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -17,9 +17,7 @@
                     <!-- START BLOCK : reserva -->
                     <tr>
                         <td>
-                            <div class="radio">
-                                <label><input type="radio" name="id" value="{id_viaje}"></label>
-                            </div>
+                            <label><input type="radio" name="id" value="{id_viaje}" required></label>
                         </td>
                         <td>{origen}</td>
                         <td>{destino}</td>
@@ -28,15 +26,15 @@
                     <!-- END BLOCK : reserva -->
                     </tbody>
                 </table>
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="fecha">Fecha:</label>
                     <input type="date" class="form-control" id="fecha" name="fecha">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="hora">Hora:</label>
                     <input type="time" class="form-control" id="hora" name="hora">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="asiento">Cant. Asientos:</label>
                     <select class="form-control" id="asiento" name="asiento">
                         <option>20</option>
@@ -44,7 +42,7 @@
                         <option>60</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-default">Reservar</button>
+                <button type="submit" class="btn btn-info col-xs-12">Reservar</button>
             </form>
         </div>
     </div>

@@ -25,4 +25,8 @@ class Reserva_Controller{
         }
         return $tp1->getOutputContent();
     }
+
+    public function agregarReserva(){
+        print_r($_POST);
+    }
 }

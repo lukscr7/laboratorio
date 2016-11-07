@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: darioflores
  * Date: 26/10/2016
  * Time: 09:13 PM
  */
-
-class Usuario{
+class Usuario
+{
 
     private $user_id;           //`user_id``pass``nom_us``ape_us``correo``permisos``foto_perfil``bandera`
     private $pass;
@@ -38,13 +39,30 @@ class Usuario{
      * @param $user_id
      * @return bool
      */
-    public function existeUsuario($user_id){
+    public function existeUsuarioID($user_id)
+    {
         global $baseDatos;
         $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `usuarios` WHERE `user_id` = '$user_id'");
         $res = $results->fetch_assoc();
-        if ($res["cant"] != 0){
+        if ($res["cant"] != 0) {
             return true;
-        }else{
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Consulta si tiene algún Conductor la Empresa con id_e
+     * @return bool
+     */
+    public function existeUsuario()
+    {
+        global $baseDatos;
+        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `usuarios`");
+        $res = $results->fetch_assoc();
+        if ($res["cant"] != 0) {
+            return true;
+        } else {
             return false;
         }
     }
@@ -56,14 +74,15 @@ class Usuario{
      * @param $contraseña
      * @return bool
      */
-    public function verificarUsuario($usuario, $contraseña){
+    public function verificarUsuario($usuario, $contraseña)
+    {
         $validar = new Validacion();
         $us = new Usuario();
         if ($us->dat_usuario($usuario))
-        $pass = $validar->pass($contraseña,$us->getPass()); //PRUEBA QUE LAS DOS CONTRASEÑAS SEAN IGUALES
-        if ($us != null && $pass){
+            $pass = $validar->pass($contraseña, $us->getPass()); //PRUEBA QUE LAS DOS CONTRASEÑAS SEAN IGUALES
+        if ($us != null && $pass) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -73,18 +92,19 @@ class Usuario{
      * @param $user_id
      * @return bool
      */
-    public function dat_usuario($user_id){
+    public function dat_usuario($user_id)
+    {
         global $baseDatos;
-        if ($this->existeUsuario($user_id)){
+        if ($this->existeUsuarioID($user_id)) {
             $sql = "SELECT * FROM `usuarios` WHERE `user_id` = '$user_id'";
             $resultado = $baseDatos->query($sql);
-            if ($resultado != false){
+            if ($resultado != false) {
                 $this->constructorUsuario($resultado->fetch_assoc());
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -93,20 +113,21 @@ class Usuario{
      * Retorna un Array de los Usuarios en la Base de Datos.
      * @return Usuario[]
      */
-    public function all_usuarios(){
+    public function all_usuarios()
+    {
         global $baseDatos;
         $arrayUsuarios = array();
-        if ($this->existeUsuario()){
+        if ($this->existeUsuario()) {
             $sql = "SELECT * FROM `usuarios`";
             $resultado = $baseDatos->query($sql);
             $arrayConsulta = $resultado->fetch_all(MYSQLI_ASSOC);
-            foreach ($arrayConsulta as $res){
+            foreach ($arrayConsulta as $res) {
                 $usuario = new Usuario();
                 $usuario->constructorUsuario($res);
                 $arrayUsuarios[] = $usuario;
             }
             return $arrayUsuarios;
-        }else{
+        } else {
             return null;
         }
 
@@ -117,7 +138,8 @@ class Usuario{
      * Actualiza los datos del Usuario al que hace referencia.
      * @return bool
      */
-    public function update(){
+    public function update()
+    {
         global $baseDatos;
         $us = $this->getUserId();
         $nom = $this->getNomUs();
@@ -140,7 +162,8 @@ class Usuario{
      * @param $correo
      * @return bool
      */
-    public function insert($usuario, $pass, $nombre, $apellido, $correo){
+    public function insert($usuario, $pass, $nombre, $apellido, $correo)
+    {
         global $baseDatos;
         $sql = "INSERT 
                 INTO `usuarios`(`user_id`, `pass`, `nom_us`, `ape_us`, `correo`, `permisos`) 
@@ -148,22 +171,24 @@ class Usuario{
         $resultado = $baseDatos->query($sql);
         return $resultado;
     }
+
     /**
      * Verifica si se quiere cambiar la foto de perfil.
      * @param $datPOST
-     * @param $datFILE["foto"]
+     * @param $datFILE ["foto"]
      * @return bool
      */
-    public function verificarModificacion($datPOST, $datFILE){
+    public function verificarModificacion($datPOST, $datFILE)
+    {
         global $baseDatos;
         $this->setNomUs($baseDatos->real_escape_string($datPOST["nombre"]));
         $this->setApeUs($baseDatos->real_escape_string($datPOST["apellido"]));
         $this->setCorreo($baseDatos->real_escape_string($datPOST["email"]));
-        if (!$datFILE["size"] == 0){
+        if (!$datFILE["size"] == 0) {
             $ruta = $datFILE["tmp_name"];
             $tipo = substr(strrchr($datFILE['name'], "."), 1);
-            $destino = "../recursos/imagen/perfil/cliente/".$this->getUserId().".".$tipo;
-            copy($ruta,$destino);
+            $destino = "../recursos/imagen/perfil/cliente/" . $this->getUserId() . "." . $tipo;
+            copy($ruta, $destino);
             $this->setFotoPerfil($destino);
         }
         return $this->update();

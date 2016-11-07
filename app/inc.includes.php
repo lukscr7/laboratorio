@@ -7,20 +7,19 @@ include("../recursos/php/class.MySQL.php");
 
 // incluimos los controladores y models propios del sistema
 
-include ("validacion.php");
+include("validacion.php");
 
 include("controller/ingreso.php");
 include("controller/perfil.php");
 include("controller/menu.php");
 include("controller/login.php");
-include ("controller/administrador.php");
+include("controller/administrador.php");
 include("controller/reservas.php");
 
-include ("model/usuario.php");
+include("model/usuario.php");
 include("model/combi.php");
-include ("model/conductor.php");
-include ("model/viaje.php");
-include ("model/reserva.php");
+include("model/conductor.php");
+include("model/viaje.php");
+include("model/reserva.php");
 
 
-?>

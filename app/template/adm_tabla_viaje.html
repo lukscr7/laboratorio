@@ -3,7 +3,7 @@
    <div class="col-lg-12" align="center">
        <h3>¿desea dar de alta a un VIAJE?</h3>
        <div class="col-lg-5"></div>
-       <button type="button" class="btn btn-info col-lg-2">Alta</button>
+       <button type="button" class="btn btn-info col-lg-2" href="#contenedor_ventana_flotante" data-toggle="modal">Alta</button>
    </div>
    <div class="col-lg-1"></div>
    <div class="col-lg-10 col-md-10 col-xs-12" align="center">
@@ -27,6 +27,8 @@
                        <input value="{id_viaje}" type="hidden" name="id_viaje">
                        <button type="submit" class="btn btn-info">Modificar</button>
                    </form>
+               </td>
+               <td>
                    <form method="post" action="#">
                        <input value="{id_viaje}" type="hidden" name="id_viaje">
                        <button type="submit" class="btn btn-info">Baja</button>
@@ -38,9 +40,50 @@
        <br>
        <div class="col-lg-12" align="center">
            <div class="col-lg-4"></div>
+           <form action="index.php" method="post"></form>
            <button type="button" class="btn btn-primary col-lg-4">Regresar a la pagina del Administrador</button>
        </div>
 
    </div>
+
+
+   <!-- ventana flotante-->
+   <div id="contenedor_ventana_flotante" class="modal fade">
+       <div class="modal-dialog">
+           <!-- contenedor de la ventana flotante -->
+           <div class="modal-content">
+               <!-- cabeza de la ventana -->
+               <div class="modal-header">
+                   <!-- boton cerrar cruz -->
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <!-- titulo - ventana flotante -->
+                   <h3 class="modal-title">Registro</h3>
+               </div>
+               <!-- formulario -->
+               <form name="formulario" id="formulario"  action="index.php?action=Viaje::registrarViaje" method="POST" >
+
+                   <!-- ventana contenido -->
+                   <div class="modal-body">
+                       <label>Origen</label><input type="text" id="origen" name="nombre_perfil" class="form-control" placeholder="Nombre" required><br>
+                       <label>Destino</label><input type="text" id="destino" name="apellido_perfil" class="form-control" placeholder="Apellido" required><br>
+                       <label>Costo</label><input type="password" id="costo" name="pass_perfil" class="form-control" placeholder="Contrase&ntilde;a" required><br>
+                       </div>
+                   <div>
+                       <!--<input id="foto_perfil" name="foto_perfil" accept="image/*" type="file" class="file-loading"> -->
+                   </div>
+                   <!-- footer de la ventana -->
+                   <!-- START BLOCK : notReg -->
+                   {mensaje}
+                   <!-- END BLOCK : notReg -->
+                   <div class="row modal-footer">
+                       <button type="reset" class="btn btn-default" data-dismiss="modal"  > Cerrar</button>
+                       <button type="submit" class="btn btn-primary"> Registrar</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
+
+
 
 

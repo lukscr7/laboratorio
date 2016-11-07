@@ -6,7 +6,7 @@
  * Time: 03:20 PM
  */
 
-class Auto{
+class Combi{
     //`id_auto``id_e``patente_auto``num_remis_auto``marca_auto``modelo``color``tamaño`
 
     private $id_auto;

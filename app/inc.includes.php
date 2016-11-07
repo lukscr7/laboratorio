@@ -15,7 +15,7 @@ include("controller/menu.php");
 include("controller/login.php");
 
 include ("model/usuario.php");
-include ("model/auto.php");
+include("model/combi.php");
 include ("model/conductor.php");
 include ("model/empresa.php");
 include ("model/viaje.php");

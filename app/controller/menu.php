@@ -66,7 +66,7 @@ class Menu_Controller{
         return $tpl->getOutputContent();
     }
 
-    public function notificacion($codigo)
+    public static function notificacion($codigo)
     {
         $tpl = new TemplatePower("template/notificacion.html");
         $tpl->prepare();

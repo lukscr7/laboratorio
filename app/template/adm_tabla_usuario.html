@@ -13,7 +13,6 @@
                 </button>
             </div>
             <br>
-            <div class="col-lg-1"></div>
             <div class="col-lg-10 col-md-10 col-xs-12" align="center">
                 <table cellpadding="15" class="table table-hover" align="center">
                     <tr>
@@ -29,7 +28,7 @@
                     </tr>
                     <!-- START BLOCK : body -->
                     <tr>
-                        <td>{id_c}</td>
+                        <td>{user_id}</td>
                         <td>{pass}</td>
                         <td>{nombre}</td>
                         <td>{apellido}</td>
@@ -37,14 +36,14 @@
                         <td>{permisos}</td>
                         <td>{foto_perfil}</td>
                         <td>
-                            <form method="post" action="#">
-                                <input value="{id_c}" type="hidden" name="id_viaje">
-                                <button type="submit" class="btn btn-success">Hacer Administrador</button>
+                            <form method="post" action="index.php?action=Administrador::hacerAdmin">
+                                <input value="{user_id}" type="hidden" name="user_id">
+                                <button type="submit" class="btn btn-success">Hacer Admin</button>
                             </form>
                         </td>
                         <td>
                             <form method="post" action="#">
-                                <input value="{id_c}" type="hidden" name="id_viaje">
+                                <input value="{user_id}" type="hidden" name="user_id">
                                 <button type="submit" class="btn btn-success">Baja</button>
                             </form>
                         </td>

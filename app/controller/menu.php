@@ -65,6 +65,14 @@ class Menu_Controller{
         "noReservaB" => array(
             "mensaje" => "No se pudo dar Cancelar la Reserva.",
             "condicion" => "Error"
+        ),
+        "ADMIN" => array(
+            "mensaje" => "Ya es Admin.",
+            "condicion" => "Correcto"
+        ),
+        "noADMIN" => array(
+            "mensaje" => "Error al hacer Admin.",
+            "condicion" => "Error"
         )
     );
 

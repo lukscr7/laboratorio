@@ -22,4 +22,17 @@ class Administrador_Controller
         return $tp1->getOutputContent();
     }
 
+    public function hacerAdmin(){
+        $user_id = $_POST["user_id"];
+        $us = new Usuario();
+        $us->dat_usuario($user_id);
+        $res = $us->hacerAdmin();
+        if ($res){
+            header('Location: index.php?alerta=ADMIN');
+        }else{
+            header('Location: index.php?alerta=noADMIN');
+        }
+
+    }
+
 }

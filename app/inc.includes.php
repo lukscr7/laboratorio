@@ -13,11 +13,8 @@ include("controller/ingreso.php");
 include("controller/perfil.php");
 include("controller/menu.php");
 include("controller/login.php");
-<<<<<<< HEAD
 include ("controller/administrador.php");
-=======
 include("controller/reservas.php");
->>>>>>> origin/master
 
 include ("model/usuario.php");
 include("model/combi.php");

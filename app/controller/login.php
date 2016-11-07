@@ -9,30 +9,7 @@
 
 class Login_Controller{
 
-    public function validar_login()
-    {
-        $usuario = new Usuario();
-        echo 'hola';
-        // Si el usuario ya pasó por la pantalla inicial y presionó el botón "Ingresar"
-        $existeUsuario= $usuario->dat_usuario($_POST['usuario_loguin']);
-        if($existeUsuario){   // La variable $ExisteUsuarioyPassoword recibe valor TRUE si el usuario existe y FALSE en caso que no. Este valor lo determina el modelo.
-                    $validar = new Validacion();
-                    $validacioncorrecta = $validar->pass($_POST['pass_loguin'],$existeUsuario["pass"]);
-                    if ($validacioncorrecta==1){
-                        echo 'ok';
-                    }else{
-                        echo 'pone bien dario culiau';
-                    }
-                    echo "Validacion Ok<br><br><a href=''>Volver</a>";   //   Si el usuario ingresó datos de acceso válido, imprimos un mensaje de validación exitosa en pantalla
-        }
-        else{   //   Si no logró validar
-                    $data['error']="Usuario o password incorrecto/a, por favor vuelva a intentar";
-                    $this->load->view('login',$data);   //   Lo regresamos a la pantalla de login y pasamos como parámetro el mensaje de error a presentar en pantalla
-        }
-    }
-
-
-    function iniciarsesion(){
+    function iniciarSesion(){
         $us = new Usuario();
         $usuario = $_POST["usuario_loguin"];
         $pass = $_POST["pass_loguin"];
@@ -42,8 +19,7 @@ class Login_Controller{
             $_SESSION["permiso"] = $us->getPermisos();
             header('Location: index.php');
         }else{
-            print "EL usuario o contraseña esta mal";
-            header('Location: index.php');
+            header('Location: index.php?notLog=UsuarioMal#log-in'); //#log-in
         }
     }
 
@@ -52,47 +28,36 @@ class Login_Controller{
         header('Location: index.php');
     }
 
-    public function pedirSinUsuario(){ //MODIFICARRRR!!
-        session_start();
-        $us = new Usuario();
-        $nombre = $_POST["nombre_sinusuario"];
-        $apellido = $_POST["apellido_sinusuario"];
-        if($_SESSION["nombre"] == $nombre){
-            echo "pedido realizado";
-        }else {
-            $_SESSION["nombre"] = $nombre;
-            $_SESSION["apellido"] = $apellido;
-            header('Location: index.php');
-            session_destroy();
-        }
-    }
+
 
     //public
     public function registrarUsuario(){//hecho asi nomas.. ya lo modifico..... ahora CALCULO AVANZADO
         $us= new Usuario();
 
+        $validar = new Validacion();
+        global $baseDatos;
+        $usuario=$baseDatos->real_escape_string($_POST['usuario_perfil']);
+        $pass=$baseDatos->real_escape_string($_POST['pass_perfil']);
+        $pass2=$baseDatos->real_escape_string($_POST['pass2_perfil']);
+        $nombre=$baseDatos->real_escape_string($_POST['nombre_perfil']);
+        $apellido=$baseDatos->real_escape_string($_POST['apellido_perfil']);
+        $correo=$baseDatos->real_escape_string($_POST['correo_perfil']);
 
-        //$_SESSION["usuario"]=$_POST['nombre_perfil'];
-        //$_SESSION["apellido"]=$_POST['apellido_perfil'];
-        $array = $_POST;
-        $apellido=$_POST['apellido_perfil'];
-        $pass=$_POST['apellido_perfil'];
-        $pass2=$_POST['apellido_perfil'];
-        $nombre=$_POST['nombre_perfil'];
-        $usuario=$_POST['usuario_perfil'];
-        $correo=$_POST['correo_perfil'];
         $verificarExistencia=$us->existeUsuario($usuario);
-        
-        if ($verificarExistencia==true){
-            $us->constructorUsuario($array);
+        $verificarPass = $validar->pass($pass,$pass2);
+        if ($verificarExistencia==false) {
+            if ($verificarPass == true){
+                $verificarInsert = $us->insert($usuario, $pass, $nombre, $apellido, $correo);
+                if ($verificarInsert==true){
+                    header('Location: index.php?notReg=Verificar#Registro');
+                }
 
+            }else {
+                header('Location: index.php?notReg=Pass#Registro');
+            }
+        }else{
+            header('Location: index.php?notReg=Existe#Registro');
         }
-
-
-            echo '<input type="button"  href="index.php" placeholder="completar">volver</input>';
-
-
-
     }
 
 

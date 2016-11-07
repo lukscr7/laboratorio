@@ -213,7 +213,7 @@ header {
 }
 
 .content-wrapper{
-    background-color: white;
+    background-color: white/*#bafff4*/;
     top: 87%;
     min-height: 12%;
     position:absolute;

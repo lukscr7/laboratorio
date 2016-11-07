@@ -6,12 +6,11 @@
             <div class="col-lg-12">
             <!-- Contenedor de la pag estatic -->
                 <div class="intro-text col-12">
-                    <span class="name">|| BuscaMe YA ||</span>
+                    <span class="name">|| ViajaRe YA ||</span>
                     <hr class="star-light">
-                    <p class="skills">La mejor pagina para pedir <b>REMISES</b> y <b>TAXIS</b> ya esta aqui!!</p>
-                    <p class="skills">¡<b>REGISTRATE</b> para acceder a todos los beneficios que tenemos para que tu viaje sea el mejor!</p>
-                    <p class="skills"><b>¿No queres registrarte?</b> no importa, tenemos un sistema de <b>PEDIDO RAPIDO</b> solo para VOS</p>
-                </div>
+                    <p class="skills">La mejor pagina para reservar <b>VIAJES</b> en toda la Provincia de Catamarca ya esta aqui!!</p>
+                    <p class="skills">¡<b>REGISTRATE</b> para acceder a todos l tenemos un sistema deos beneficios que tenemos para que tu viaje sea el mejor!</p>
+            </div>
             </div>
         </div>
     </div>
@@ -22,64 +21,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2>PEDILO-YA</h2>
+                    <h2>|| RECUERDA ||</h2>
                     <hr class="star-primary">
+                    <h3>loguearte para poder gestionar tu pedido de una forma <b>RAPIDA</b> y <b>EFICAZ</b></h3>
                 </div>
-            </div>
-            <div class="row">
-                    <div class="col-1 col-lg-1"></div>
-                <!-- contenedor del row con el pedido sin registro --> 
-                    <div class="col-4 col-lg-3 col-xm-5 gradiente sombreado_izq bordes_2izq"  >
-                        <form class="form-horizontal" role="form" >
-                              <div align="center"> <label id="login2">Pedilo sin necesidad de Registrarte</label></div>
-                                <!-- contenedor nombre -->
-                                <label>Nombre</label> 
-                              <div class="form-group login__row" align="center">  
-                                    <span class="glyphicon glyphicon-user" ></span>
-                                    <input type="text" id="nombre_sinusuario" name="nombre_sinusuario" class="login__input2 name" placeholder=""/>
-                              </div>
-                           
-                                <!-- contenedor apellido -->
-                                <label>Apellido</label>
-                              <div class="form-group login__row" align="center">
-                                    <span class="glyphicon glyphicon-user" ></span>
-                                    <input type="text" id="apellido_sinusuario" name="apellido_sinusuario" class="login__input2 name" placeholder=""/>
-                              </div>
-                                <!-- contenedor origen -->
-                               <!-- <label>Origen</label>
-                              <div class="form-group login__row" align="center">
-                                     <span class="glyphicon glyphicon-search"></span>
-                                    <input type="text" id="origen" class="login__input2 name" placeholder=""/>
-                              </div> -->
-                                <!-- contenedor destino -->
-                               <!-- <label>Destino</label>
-                              <div class="form-group login__row" align="center">
-                                    <span class="glyphicon glyphicon-home" ></span>
-                                    <input type="text" id="destino" class="login__input2 name" placeholder=""/>
-                              </div> -->
-                                          
-                                <!-- contenedor boton de pedir remis -->
-                              <div class="form-group" align="center">
-                                  <div> <button type="submit" class="login__submit2"><i class="fa fa-phone " aria-hidden="true"></i> Realizar Pedido</button></div>
-                              </div>
-                              <!-- contenedor registrar -->
-                              <div class="form-group"> <p class="login__signup2" align="center">No seria mejor tener cuenta? &nbsp;<a href="#Registro">Registrate Ahora</a></p></div>
-                             
-                              
-                        </form>         
-                    </div>
-                    <div class="col-7 co-7-lg.">
-                                <div class="intro-text" align="center">
-                                    
-                                    <hr>
-                                    <h4 class="skills" >Aprovecha nuestro servicio de pedidos rapidos</h4>
-                                    <h4 class="skills">Tan solo ingresando estos datos, tendras un movil en la puerta de tu casa</h4><br><br>
-                                    <h4 class="skills"> ¿Te interesa poder pagar con tarjeta de Credito? <a href="#Registro"><b>¡Registrate Ahora!</b></a></h4>
-                                     <hr>
-                                </div>
-                        
-                    </div>
-
             </div>
         </div>
     </section>
@@ -98,7 +43,7 @@
                 
                  <!-- loguin -->  
                 <div id="aparece" class="col-4 col-lg-4 col-md-8 col-xs-7 login bordes_2der sombreado" align="center" >
-                    <form class="form-horizontal" role="form" action="index.php?action=Login::iniciarsesion" method="post">
+                    <form class="form-horizontal" role="form" action="index.php?action=Login::iniciarSesion" method="post">
                             <div> <label id="login">Ingresa tu Cuenta</label></div>
                                       <!-- contenedor usuario -->
                             <div class="form-group login__row">
@@ -115,6 +60,9 @@
                                             <input type="password" id="pass_loguin" name="pass_loguin" class="login__input pass" placeholder="Contrase&ntilde;a"/>
 
                             </div>
+                        <!-- START BLOCK : notLog -->
+                        {mensaje}
+                        <!-- END BLOCK : notLog -->
                                         <!-- contenedor boton -->
                             <div class="form-group" align="center">
                                           <div> 
@@ -148,37 +96,32 @@
                         <!-- titulo - Registro -->
                         <h3 class="modal-title" align="center">Registrate, y accede a todos los beneficios. </h3>
                     </div>
-                    <form name="formulario" id="formulario" novalidate="" >
+                    <form name="formulario" id="formulario" novalidate="" action="index.php?action=Login::registrarUsuario" method="POST" >
                         
                     <!-- ventana contenido -->
                     <div class="modal-body">
-                        <label>Nombre</label><input type="text" name="nombre_perfil" class="form-control" placeholder="Nombre"><br>
-                        <label>Apellido</label><input type="text" name="apellido_perfil" class="form-control" placeholder="Apellido"><br>
+                        <label>Nombre</label><input type="text" id="nombre_perfil" name="nombre_perfil" class="form-control" placeholder="Nombre"><br>
+                        <label>Apellido</label><input type="text" id="apellido_perfil" name="apellido_perfil" class="form-control" placeholder="Apellido"><br>
                         <label>Nombre de Usuario</label>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">@</span>
-                            <input type="text" class="form-control" name="usuario_perfil" placeholder="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" id="usuario_perfil" name="usuario_perfil" placeholder="Username" aria-describedby="basic-addon1">
                         </div>
-                        <label>Contrase&ntilde;a</label><input type="password" name="pass_perfil" class="form-control" placeholder="Contrase&ntilde;a"><br>
-                        <label>Confirmar Contrase&ntilde;a</label><input type="password" name="confirmarpass_perfil" class="form-control" placeholder="Confirmar Contrase&ntilde;a"><br>
-                        <section class="col-9">
-                            <label>Direccion</label><input type="text" name="direccion_perfil" class="form-control" placeholder="Direccion">
-                        </section>
-                        <section class="col-3">
-                            <label>Numero de casa</label><input type="number" name="nro_casa_perfil" class="form-control" placeholder="">
-                        </section>
-                        <label>Correo</label><input type="email" name="correo_perfil"  class="form-control" placeholder="ejemplo@dominio"><br>
+                        <label>Contraseña</label><input type="password" id="pass_perfil" name="pass_perfil" class="form-control" placeholder="Contrase&ntilde;a"><br>
+                        <label>Confirmar Contrase&ntilde;a</label><input type="password" id="pass2_perfil" name="pass2_perfil" class="form-control" placeholder="Confirmar Contrase&ntilde;a"><br>
+                        <label>Correo</label><input type="email" id="correo_perfil" name="correo_perfil"  class="form-control" placeholder="ejemplo@dominio"><br>
                     </div>
                     <div>
-                        <input id="foto_perfil" name="foto_perfil" accept="image/*" type="file" class="file-loading">
+                        <!--<input id="foto_perfil" name="foto_perfil" accept="image/*" type="file" class="file-loading"> -->
                     </div>
                     <!-- footer de la ventana -->
+                        <!-- START BLOCK : notReg -->
+                        {mensaje}
+                        <!-- END BLOCK : notReg -->
                     <div class="row modal-footer">
                         <button type="reset" class="btn btn-default" data-dismiss="modal"> Borrar Campos</button>
-                        <button type="submit" class="btn btn-primary"> Dar de ALTA</button>
+                        <button type="submit" class="btn btn-primary"> Registrar</button>
                     </div>
-                        
-                        
                     </form>
                 </div>
             </div>
@@ -199,10 +142,10 @@
                     <p>El objetivo principal del desarrollo de la presente aplicación es, no solamente cumplir con los requisitos del trabajo de laboratorio de la catedra de “programación III” de la facultad de “Tecnología y Ciencias aplicadas”, sino también ayudar a mejorar el servicio de taxis y remises en la ciudad de San Fernando del Valle de Catamarca (provincia de Catamarca). </p>
                 </div>
                 <div class="col-lg-4">
-                    <p>Con esta Aplicación web ofrecemos una nueva forma de acceder al servicio a través de la web, pudiendo pedir un móvil prescindiendo de la tipica “llamada de teléfono”; brindando a los usuarios registrados la posibilidad de poder pagar el viaje con tarjeta de crédito, generando un comprobante con un código único, al presentarlo, el conductor tendría que llevarlo a donde el pasajero solicito. También cada pasajero dispondrá de la opción de agregar lugares personales, para hacer más rápido el pedido.</p>
+                    <p>Con esta Aplicación web ofrecemos una nueva forma de acceder al servicio a través de la web, pudiendo gestionar un viaje prescindiendo de la tipica “llamada de teléfono”; brindando a los usuarios registrados la posibilidad de poder pagar el viaje con tarjeta de crédito, generando un comprobante con un código único, al presentarlo, este podra subir al movil y tan solo disfrutar el viaje.</p>
                 </div>
                 <div class="col-lg-4">
-                    <p><b>“BuscaMe YA”</b> está diseñada para favorecer a las empresas de la ciudad, pues cada una de ellas puede decidir ingresar al sistema, donde ofreceremos un registro total de conductores, móviles y viajes realizados en tiempo real, donde podrán responder a cada pedido de parte de los pasajeros. Incluso cada conductor que se agregue al Sistema, tendrá su propio perfil de usuario para que el mismo tenga un registro de sus viajes y ganancias.</p>
+                    <p><b>“ViajaRe YA”</b> está diseñada para favorecer a las empresas de la ciudad, pues cada una de ellas puede decidir ingresar al sistema, donde ofreceremos un registro total de conductores, móviles y viajes realizados en tiempo real, donde podrán responder a cada pedido de parte de los pasajeros. Incluso cada conductor que se agregue al Sistema, tendrá su propio perfil de usuario para que el mismo tenga un registro de sus viajes y ganancias.</p>
                 </div>
             </div>
             <div class="row" align="center">
@@ -218,11 +161,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2>Contacto</h2>
+                    <h2>Solicitud de Chofer</h2>
                     <hr class="star-primary">
                     <h3></h3>
                     <form align="center">
-                        <div class="" id="contacto" align="center">
+                        <div class="" id="Contacto" align="center">
                             <div class="modal-body">
                                 <label>Nombre Empresa</label><input type="text" class="form-control" placeholder="Nombre"><br>
                                 <label>¿Porque te interesa darte de alta?</label> <textarea class="form-control" rows="4" placeholder="Cuentanos una breve descripcion de su empresa"></textarea>
@@ -240,6 +183,5 @@
         </div>
     </section>
       <!-- fin de contacto -->
-
 </div>
 

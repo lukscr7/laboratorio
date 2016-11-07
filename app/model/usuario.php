@@ -127,6 +127,23 @@ class Usuario{
     }
 
     /**
+     *
+     * @param $usuario
+     * @param $pass
+     * @param $nombre
+     * @param $apellido
+     * @param $correo
+     * @return bool
+     */
+    public function insert($usuario, $pass, $nombre, $apellido, $correo){
+        global $baseDatos;
+        $sql = "INSERT 
+                INTO `usuarios`(`user_id`, `pass`, `nom_us`, `ape_us`, `correo`, `permisos`) 
+                VALUES ('$usuario', '$pass', '$nombre', '$apellido', '$correo', 'PASAJERO')";
+        $resultado = $baseDatos->query($sql);
+        return $resultado;
+    }
+    /**
      * Verifica si se quiere cambiar la foto de perfil.
      * @param $datPOST
      * @param $datFILE["foto"]

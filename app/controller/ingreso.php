@@ -16,6 +16,17 @@ class Ingreso_Controller{
             $tpl = new TemplatePower("template/login.html");
             $tpl->prepare();
             $tpl->gotoBlock("_ROOT");
+            $menu = new Menu_Controller();
+            if (isset($_GET["notReg"])){
+                $error = $_GET["notReg"];
+                $tpl->newBlock("notReg");
+                $tpl->assign("mensaje",$menu->notificacion($error));
+            }
+            if (isset($_GET["notLog"])){
+                $error = $_GET["notLog"];
+                $tpl->newBlock("notLog");
+                $tpl->assign("mensaje",$menu->notificacion($error));
+            }
             $webapp = $tpl->getOutputContent();
         }
         return $webapp;

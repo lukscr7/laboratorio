@@ -18,15 +18,27 @@ class Menu_Controller{
     private static $errores = array(        //Agregar mensajes de error AQUÍ
         "UsuarioMal" => array(
             "mensaje" => "Usuario o Contraseña Incorrecta",
-            "condicion" => "Error"          //Correcto: Verde   Error: Rojo     Info: Azul
+            "condicion" => "Error"          //Correcto: Verde   Error: Rojo     Info: Azul      Cuidado: Amarilo
         ),
         "Update" => array(
             "mensaje" => "Se Modificaron los Datos con Éxito!.",
-            "condicion" => "Correcto"       //Correcto: Verde   Error: Rojo     Info: Azul
+            "condicion" => "Correcto"       //Correcto: Verde   Error: Rojo     Info: Azul      Cuidado: Amarilo
         ),
         "UpdateMal" => array(
             "mensaje" => "NO Se Modificaron los Datos.",
-            "condicion" => "Error"       //Correcto: Verde   Error: Rojo     Info: Azul
+            "condicion" => "Error"       //Correcto: Verde   Error: Rojo     Info: Azul     Cuidado: Amarilo
+        ),
+        "Pass" => array(
+            "mensaje" => "Error al registrar! las Contraseñas no coinciden, debe ingresar la misma cotraseña para realizar el registro, intentelo NUEVAMENTE",
+            "condicion" => "Error"
+        ),
+        "Existe" => array(
+            "mensaje" => "Ups! el nombre de usuario que quiere ingresar ya existe, vuelva a intentarlo con uno diferente",
+            "condicion" => "Cuidado"
+        ),
+        "Verificar" => array(
+            "mensaje" => "Felicidades! usted se a registrado con exito",
+            "condicion" => "Correcto"
         )
     );
 
@@ -54,7 +66,7 @@ class Menu_Controller{
         return $tpl->getOutputContent();
     }
 
-    public static function notificacion($codigo)
+    public function notificacion($codigo)
     {
         $tpl = new TemplatePower("template/notificacion.html");
         $tpl->prepare();
@@ -73,6 +85,10 @@ class Menu_Controller{
                 case "Error":
                     $tpl->assign("menj", "Upps!");
                     $tpl->assign("tipo", "alert-danger");
+                    break;
+                case "Cuidado":
+                    $tpl->assign("menj", "Warning!");
+                    $tpl->assign("tipo", "alert-warning");
                     break;
                 default:
                     $tpl->assign("menj", "Info!");

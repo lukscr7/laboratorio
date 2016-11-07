@@ -31,7 +31,6 @@ class Conductor{
         $this->estado = $array["estado"];
     }
 
-
     /**
      * Crea un Objeto Conductor a partir de un id_c
      * @param $id_c
@@ -134,6 +133,32 @@ class Conductor{
         }else{
             return null;
         }
+    }
+
+    public function verificarDatos($datPOST, $datFILE){
+        global $baseDatos;
+        $this->setNombre($baseDatos->real_escape_string($datPOST["nombre"]));
+        $this->setApellido($baseDatos->real_escape_string($datPOST["apellido"]));
+        $this->setCorreo($baseDatos->real_escape_string($datPOST["email"]));
+        $this->setTelefono($baseDatos->real_escape_string($datPOST["telefono"]));
+        if (!$datFILE["size"] == 0){
+            $ruta = $datFILE["tmp_name"];
+            $tipo = substr(strrchr($datFILE['name'], "."), 1);
+            $destino = "../recursos/imagen/perfil/conductor".$this->getIdC().".".$tipo;
+            copy($ruta,$destino);
+            $this->setFotoPerfil($destino);
+        }
+    }
+
+    public function insert($datPOST, $datFILE){
+        $this->verificarDatos($datPOST, $datFILE);
+        $nom = $this->getNombre();
+        $ape = $this->getApellido();
+        $correo = $this->getCorreo();
+        $telefono = $this->getTelefono();
+        $foto = $this->getFotoPerfil();
+        $sql = "INSERT INTO `conductores` ( `nombre`, `apellido`, `foto_perfil`, `telefono`, `correo`, `estado`) 
+                VALUES ('$nom', '$ape', '$correo', '$telefono', '$foto', 'LIBRE')";
     }
 
     /**

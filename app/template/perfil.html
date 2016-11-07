@@ -46,17 +46,17 @@
                     <div class="form-group">
                         <label for="nombre" class="control-label">Nombre:</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" onchange="validar_texto(this)"
-                               placeholder="Nombre Aquí" required>
+                               placeholder="Nombre Aquí" value="{nom}" required>
                     </div>
                     <div class="form-group">
                         <label for="apellido" class="control-label">Apellido:</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido"
+                        <input type="text" class="form-control" id="apellido" name="apellido" value="{ape}"
                                onchange="validar_texto(this)" placeholder="Apellido Aquí" required>
                     </div>
                     <div id="contenedor_email" class="form-group">
                         <label for="email" class="control-label">E-mail:</label>
                         <input type="email" class="form-control" id="email" name="email" onchange="validar_email()"
-                               placeholder="ejemplo@example.com" required>
+                               placeholder="ejemplo@example.com" value="{email}" required>
                     </div>
                     <div class="form-group">
                         <label>Foto de Perfil:</label>
@@ -103,14 +103,14 @@
 
             <!--TARJETA QUE MUESTRA LA INFORMACIÓN DE UN VIAJE REALIZADO-->
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="row contenedor-viaje margen {estado}"> //ESTADO PUEDE SER alert-success O alert-danger
+                <div class="row contenedor-viaje margen"> //ESTADO PUEDE SER alert-success O alert-danger
                     <div class="row borde-abajo">
                         <div class="col-sm-9 col-xs-7">
                             <h2 class="font-titulo">{destino}</h2>
                         </div>
                         <div class="col-sm-3 col-xs-5">
-                            <div><img src="../../recursos/imagen/Captura2.png" class="img-perfil-viaje img-centrdo"
-                                      alt="conductor"></div>
+                            <div><a href="#"><img src="{imagen}" class="img-perfil-viaje img-centrdo"
+                                      alt="conductor"></a></div>
                         </div>
                     </div>
                     <div class="col-xs-12">
@@ -122,15 +122,22 @@
                     </div>
                     <div class="col-xs-12">
                         <div class="row margen">
-                            <div class="font-tipo">Distancia
-                                <div class="font-contenido">{distancia}</div>
+                            <div class="font-tipo">Fecha
+                                <div class="font-contenido">{fecha}</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12">
                         <div class="row margen">
-                            <div class="font-tipo">Tiempo
-                                <div class="font-contenido">{tiempo}</div>
+                            <div class="font-tipo">Hora
+                                <div class="font-contenido">{hora}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="row margen">
+                            <div class="font-tipo">Asientos
+                                <div class="font-contenido">{asientos}</div>
                             </div>
                         </div>
                     </div>

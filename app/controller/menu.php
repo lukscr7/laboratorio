@@ -9,10 +9,8 @@
 class Menu_Controller{
 
     private static $menu_pasajero = array(
-        "Pedir Avanzado" => "index.php?action=Vuelos::registrar",
-        "Perfil" => "index.php?action=Ingreso::main",
-        "Pedidos" => "index.php?action=Vuelos::listadoReservas",
-        "Sobre" => "index.php?action=Vuelos::listadoReservasBorrado"
+        "Reservar" => "index.php?action=Ingreso::main",
+        "Perfil" => "index.php?action=Perfil::cliente"
     );
 
     private static $errores = array(        //Agregar mensajes de error AQUÍ

@@ -66,8 +66,8 @@ class Usuario{
         }else{
             return false;
         }
-
     }
+
     /**
      * Trae todos los datos de un Usuario user_id de la Base de Datos.
      * @param $user_id
@@ -144,7 +144,7 @@ class Usuario{
         global $baseDatos;
         $sql = "INSERT 
                 INTO `usuarios`(`user_id`, `pass`, `nom_us`, `ape_us`, `correo`, `permisos`) 
-                VALUES ('$usuario', '$pass', '$nombre', '$apellido', '$correo', 'PASAJERO')";
+                VALUES ('$usuario', '$pass', '$nombre', '$apellido', '$correo', 'CLIENTE')";
         $resultado = $baseDatos->query($sql);
         return $resultado;
     }
@@ -162,7 +162,7 @@ class Usuario{
         if (!$datFILE["size"] == 0){
             $ruta = $datFILE["tmp_name"];
             $tipo = substr(strrchr($datFILE['name'], "."), 1);
-            $destino = "../recursos/imagen/".$this->getUserId().".".$tipo;
+            $destino = "../recursos/imagen/perfil/cliente/".$this->getUserId().".".$tipo;
             copy($ruta,$destino);
             $this->setFotoPerfil($destino);
         }

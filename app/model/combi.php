@@ -83,6 +83,27 @@ class Combi{
     }
 
     /**
+     * @return Combi[]|null
+     */
+    public function listaCombis(){
+        global $baseDatos;
+        if ($this-$this->existeCombiID()){
+            $sql = "SELECT * FROM `combis`";
+            $arrayCombis = array();
+            $resultado = $baseDatos->query($sql);
+            $arrayConsulta = $resultado->fetch_array(MYSQLI_ASSOC);
+            foreach ($arrayConsulta as $res){
+                $combi = new Combi();
+                $combi->constructorCombi($res);
+                $arrayCombis[] = $combi;
+            }
+            return $arrayCombis;
+        }else{
+            return null;
+        }
+    }
+
+    /**
      * @return mixed
      */
     public function getIdCombi()

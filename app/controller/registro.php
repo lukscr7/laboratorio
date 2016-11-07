@@ -78,16 +78,16 @@ class Registros_Controller
         $tp1->prepare();
         $tp1->gotoBlock("_ROOT");
         $combi = new Combi();
-        $lista = $combi->autos_empresa();
+        $lista = $combi->listaCombis();
         if ($lista != null) {
             foreach ($lista as $res) {
                 $tp1->newBlock("body");
-                $tp1->assign("id_combi", $res->);
-                $tp1->assign("patente", $res->());
-                $tp1->assign("marca", $res->());
-                $tp1->assign("modelo", $res->());
-                $tp1->assign("color", $res->());
-                $tp1->assign("cant_asientos", $res->());
+                $tp1->assign("id_combi", $res->getIdCombi());
+                $tp1->assign("patente", $res->getPatente());
+                $tp1->assign("marca", $res->getMarca());
+                $tp1->assign("modelo", $res->getModelo());
+                $tp1->assign("color", $res->getColor());
+                $tp1->assign("cant_asientos", $res->getCantAsientos());
             }
         }
         return $tp1->getOutputContent();

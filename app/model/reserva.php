@@ -91,6 +91,45 @@ class Reserva
         }
     }
 
+    private function existeReserva($id_reserva)
+    {
+        global $baseDatos;
+        $sql = "SELECT COUNT(*) AS cant FROM `reservas` WHERE `id_reserva` = '$id_reserva'";
+        $results = $baseDatos->query($sql);
+        $res = $results->fetch_assoc();
+        if ($res["cant"] == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Crea un Objeto Conductor a partir de un id_c
+     * @param $id_reserva
+     * @return bool
+     */
+    public function reserva_id($id_reserva){
+        global $baseDatos;
+        if ($this->existeReserva($id_reserva)){
+            $sql = "SELECT * FROM `reservas` WHERE `id_reserva` = '$id_reserva'";
+            $resultado = $baseDatos->query($sql);
+            $con = $resultado->fetch_assoc();
+            $this->constructorReserva($con);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function baja(){
+        global $baseDatos;
+        $id_reserva = $this->getIdReserva();
+        $sql = "DELETE FROM `reservas` WHERE `reservas`.`id_reserva` = '$id_reserva'";
+        $res = $baseDatos->query($sql);
+        return $res;
+    }
+
     /**
      * @return mixed
      */

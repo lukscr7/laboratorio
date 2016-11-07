@@ -56,6 +56,29 @@ class Reserva_Controller
         } else {
             header('Location: index.php?alerta=noCondLibre');
         }
+    }
 
+    public function verificarBaja(){
+        $reserva = new Reserva();
+        $id_reserva = $_POST["id"];
+        $reserva->reserva_id($id_reserva);
+        $id_c = $reserva->getIdC();
+        $id_combi = $reserva->getIdCombi();
+        $baja = $reserva->baja();
+        if ($baja){
+            $con = new Conductor();
+            $com = new Combi();
+            $cond = $con->conductor_id($id_c);
+            $com->dat_combi($id_combi);
+
+            $com->libre();
+            var_dump($cond);
+            if ($cond->libre()){
+                echo "Anda";
+            }
+            header('Location: index.php?alerta=ReservaB');
+        }else{
+            header('Location: index.php?alerta=noReservaB');
+        }
     }
 }

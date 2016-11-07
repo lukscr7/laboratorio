@@ -142,6 +142,14 @@ class Conductor{
         return $res;
     }
 
+    public function libre(){
+        global $baseDatos;
+        $id_c = $this->getIdC();
+        $sql = "UPDATE `conductores` SET `estado` = 'LIBRE' WHERE `conductores`.`id_c` = '$id_c'";
+        $res = $baseDatos->query($sql);
+        return $res;
+    }
+
     public function verificarDatos($datPOST, $datFILE){
         global $baseDatos;
         $this->setNombre($baseDatos->real_escape_string($datPOST["nombre"]));

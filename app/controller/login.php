@@ -74,4 +74,40 @@ class Login_Controller
         }
 
     }
+
+    //public
+    public function registrarConductor()
+    {//hecho asi nomas.. ya lo modifico..... ahora CALCULO AVANZADO
+        $con = new Conductor();
+        global $baseDatos;
+        $nombre = $baseDatos->real_escape_string($_POST['nombre_con']);
+        $apellido = $baseDatos->real_escape_string($_POST['apellido_con']);
+        $telefono = $_POST['telefono_con'];
+        $correo = $_POST['correo_con'];
+        $foto = $_POST['foto_con'];
+        $verificarInsert = $con->insert2($nombre, $apellido, $correo, $telefono);
+        if ($verificarInsert == true) {
+            header('Location: index.php?notReg=ErrorInsert#Registro');
+        }
+
+    }
+
+    public function actualizarConductor(){
+        $con = new Conductor();
+        global $baseDatos;
+        $id = $baseDatos->real_escape_string($_POST['id_c']);
+        $nombre = $baseDatos->real_escape_string($_POST['nombre_con']);
+        $apellido = $baseDatos->real_escape_string($_POST['apellido_con']);
+        $telefono = $_POST['telefono_con'];
+        $correo = $baseDatos->real_escape_string($_POST['correo_perfil']);
+        $foto = $_POST['foto_con'];
+        $verificarUpdate = $con->update($id, $nombre, $apellido, $correo, $telefono);
+        if ($verificarUpdate == true) {
+            header('Location: index.php?notReg=ErrorInsert#Registro');
+        }
+
+    }
+
+
+
 }

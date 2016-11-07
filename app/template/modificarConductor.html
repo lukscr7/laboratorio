@@ -1,0 +1,38 @@
+            <div>
+                <h3 class="modal-title">Modificar Conductor</h3>
+            </div>
+            <div>
+                <!-- formulario -->
+                <form name="formulario" id="formulario"  action="index.php?action=Login::actualizarConductor" method="POST" >
+                    <!-- ventana contenido -->
+                    <div class="modal-body">
+                        <!-- START BLOCK : modificarConductor -->
+                        <input value="{id_c}" type="hidden" name="id_c">
+                        <label>Nombre</label><input type="text" value="{nombre}" id="nombre_con" name="nombre_con" class="form-control" placeholder="Nombre" required><br>
+                        <label>Apellido</label><input type="text" value="{apellido}" id="apellido_con" name="apellido_con" class="form-control" placeholder="Apellido" required><br>
+                        <label>Telefono</label><input type="number" value="{telefono}" id="telefono_con" name="telefono_con" class="form-control" placeholder="Contrase&ntilde;a" required><br>
+                        <label>Correo</label><input type="email" value="{correo}" id="correo_perfil" name="correo_con"  class="form-control" placeholder="ejemplo@dominio" required><br>
+                    </div>
+                    <div>
+                        <input id="foto2_con" name="foto2_con" accept="image/*" type="file" class="file-loading" >
+                    </div>
+                    <!-- footer de la ventana -->
+                    <div>
+                        {mensaje}
+                    </div>
+                    <!-- END BLOCK : modificarConductor -->
+                    <div class="row modal-footer">
+                        <button type="reset" class="btn btn-default" data-dismiss="modal"  > Cerrar</button>
+                        <button type="submit" class="btn btn-primary"> Registrar</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-lg-12" align="center">
+                <div class="col-lg-4"></div>
+                <form action="index.php" method="post">
+                    <button type="submit" class="btn btn-primary col-lg-4">Regresar a la pagina del Administrador</button>
+                </form>
+            </div>
+
+

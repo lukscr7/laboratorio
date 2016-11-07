@@ -168,6 +168,25 @@ class Conductor{
                 VALUES ('$nom', '$ape', '$correo', '$telefono', '$foto', 'LIBRE')";
     }
 
+    public function insert2($nom,$ape,$correo,$telefono){
+        global $baseDatos;
+        $sql = "INSERT INTO `conductores` ( `nombre`, `apellido`, `correo`, `telefono`, `estado`) 
+                VALUES ('$nom', '$ape', '$correo', '$telefono', 'LIBRE')";
+        $resultado = $baseDatos->query($sql);
+        return $resultado;
+    }
+
+    public function update($id,$nom,$ape,$correo,$telefono)
+    {
+        global $baseDatos;
+        $sql = "UPDATE `conductores` 
+                SET `nombre`= '$nom',`apellido`='$ape',`telefono`='$telefono',`correo`='$correo' 
+                WHERE `id_c`='$id'";
+        $resultado = $baseDatos->query($sql);
+        return $resultado;
+    }
+
+
     /**
      * @return mixed
      */

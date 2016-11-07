@@ -34,30 +34,37 @@ class Login_Controller{
     public function registrarUsuario(){//hecho asi nomas.. ya lo modifico..... ahora CALCULO AVANZADO
         $us= new Usuario();
 
-        $validar = new Validacion();
-        global $baseDatos;
-        $usuario=$baseDatos->real_escape_string($_POST['usuario_perfil']);
-        $pass=$baseDatos->real_escape_string($_POST['pass_perfil']);
-        $pass2=$baseDatos->real_escape_string($_POST['pass2_perfil']);
-        $nombre=$baseDatos->real_escape_string($_POST['nombre_perfil']);
-        $apellido=$baseDatos->real_escape_string($_POST['apellido_perfil']);
-        $correo=$baseDatos->real_escape_string($_POST['correo_perfil']);
+        foreach ($_POST as $key => $value) {
+            if ($key <> 'correo_perfil' ) {
+                $validar = new Validacion();
+                global $baseDatos;
+                $usuario = $baseDatos->real_escape_string($_POST['usuario_perfil']);
+                $pass = $baseDatos->real_escape_string($_POST['pass_perfil']);
+                $pass2 = $baseDatos->real_escape_string($_POST['pass2_perfil']);
+                $nombre = $baseDatos->real_escape_string($_POST['nombre_perfil']);
+                $apellido = $baseDatos->real_escape_string($_POST['apellido_perfil']);
+                $correo = $baseDatos->real_escape_string($_POST['correo_perfil']);
 
-        $verificarExistencia=$us->existeUsuario($usuario);
-        $verificarPass = $validar->pass($pass,$pass2);
-        if ($verificarExistencia==false) {
-            if ($verificarPass == true){
-                $verificarInsert = $us->insert($usuario, $pass, $nombre, $apellido, $correo);
-                if ($verificarInsert==true){
-                    header('Location: index.php?notReg=Verificar#Registro');
+                $verificarExistencia = $us->existeUsuario($usuario);
+                $verificarPass = $validar->pass($pass, $pass2);
+                if ($verificarExistencia == false) {
+                    if ($verificarPass == true) {
+                        $verificarInsert = $us->insert($usuario, $pass, $nombre, $apellido, $correo);
+                        if ($verificarInsert == true) {
+                            header('Location: index.php?notReg=Verificar#Registro');
+                        }
+
+                    } else {
+                        header('Location: index.php?notReg=Pass#Registro');
+                    }
+                } else {
+                    header('Location: index.php?notReg=Existe#Registro');
                 }
-
-            }else {
-                header('Location: index.php?notReg=Pass#Registro');
+            } else {
+                header('Location: index.php?notReg=SinDatos#Registro');
             }
-        }else{
-            header('Location: index.php?notReg=Existe#Registro');
         }
+
     }
 
 

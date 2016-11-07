@@ -39,6 +39,10 @@ class Menu_Controller{
         "Verificar" => array(
             "mensaje" => "Felicidades! usted se a registrado con exito",
             "condicion" => "Correcto"
+        ),
+        "SinDatos" => array(
+            "mensaje" => "Para registrarse debe llenar el formulario, Gracias",
+            "condicion" => "Info"
         )
     );
 

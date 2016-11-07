@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2016 a las 00:45:49
+-- Tiempo de generación: 07-11-2016 a las 13:28:13
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.8
 
@@ -32,9 +32,16 @@ CREATE TABLE `combi` (
   `marca` varchar(20) NOT NULL,
   `modelo` varchar(20) NOT NULL,
   `color` varchar(20) NOT NULL,
-  `cant_asientos` int(8) NOT NULL,
+  `cant_asientos` enum('20','40','60') NOT NULL,
   `estado` enum('LIBRE','OCUPADO') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `combi`
+--
+
+INSERT INTO `combi` (`id_combi`, `patente`, `marca`, `modelo`, `color`, `cant_asientos`, `estado`) VALUES
+(1, 'ICJ 628', 'Ferrari', 'V1.7', 'Rojo', '40', 'OCUPADO');
 
 -- --------------------------------------------------------
 
@@ -52,6 +59,13 @@ CREATE TABLE `conductores` (
   `estado` enum('LIBRE','OCUPADO') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `conductores`
+--
+
+INSERT INTO `conductores` (`id_c`, `nombre`, `apellido`, `foto_perfil`, `telefono`, `correo`, `estado`) VALUES
+(1, 'Fulanito', 'Fulano', '../recursos/imagen/ImagenPorDefecto.png', '3834578983', 'dario_flores321@hotmail.com', 'OCUPADO');
+
 -- --------------------------------------------------------
 
 --
@@ -64,9 +78,17 @@ CREATE TABLE `reservas` (
   `id_viaje` bigint(20) NOT NULL,
   `id_combi` bigint(20) NOT NULL,
   `costo` int(11) DEFAULT NULL,
-  `fecha_hora` datetime NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
   `id_reserva` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `reservas`
+--
+
+INSERT INTO `reservas` (`user_id`, `id_c`, `id_viaje`, `id_combi`, `costo`, `fecha`, `hora`, `id_reserva`) VALUES
+('lucas', 1, 2, 1, 280, '2016-11-10', '05:23:00', 3);
 
 -- --------------------------------------------------------
 
@@ -90,8 +112,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`user_id`, `pass`, `nom_us`, `ape_us`, `correo`, `permisos`, `foto_perfil`, `bandera`) VALUES
-('dario', '123456', 'Dario', 'Flores', 'darioexequiel22@gmail.com', 'ADMIN', '../recursos/imagen/dario.jpg', 'ACTIVO'),
-('lucas', '123456', 'Lucas', 'Diaz', 'cr7@gmail.com', 'CLIENTE', '../recursos/imagen/villa_parque.jpg', 'ACTIVO');
+('dario', '123456', 'Dario', 'Flores', 'dario_flores321@hotmail.com', 'ADMIN', '../recursos/imagen/perfil/cliente/dario.jpg', 'ACTIVO'),
+('lucas', '123456', 'Lucas', 'Diaz', 'cr7@gmail.com', 'CLIENTE', '../recursos/imagen/perfil/cliente/lucas.jpg', 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -105,6 +127,14 @@ CREATE TABLE `viajes` (
   `destino` varchar(100) NOT NULL,
   `monto_basico` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `viajes`
+--
+
+INSERT INTO `viajes` (`id_viaje`, `origen`, `destino`, `monto_basico`) VALUES
+(1, 'Capital', 'Belen', '400'),
+(2, 'Tinogasta', 'Andalgala', '200');
 
 --
 -- Índices para tablas volcadas
@@ -154,22 +184,22 @@ ALTER TABLE `viajes`
 -- AUTO_INCREMENT de la tabla `combi`
 --
 ALTER TABLE `combi`
-  MODIFY `id_combi` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_combi` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `conductores`
 --
 ALTER TABLE `conductores`
-  MODIFY `id_c` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_c` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id_reserva` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_reserva` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id_viaje` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_viaje` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --

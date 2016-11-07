@@ -119,20 +119,27 @@ class Conductor{
 
     /**
      * asigna a un Conductor para un Viaje
-     * @return Conductor|null
+     * @return bool
      */
     public function asignar(){
         global $baseDatos;
         if ($this->existeConductorLibre()){
-            $conductor = new Conductor();
             $sql = "SELECT * FROM conductores WHERE `estado` = 'LIBRE'";
             $resultado = $baseDatos->query($sql);
             $con = $resultado->fetch_assoc();
-            $conductor->constructorConductor($con);
-            return $conductor;
+            $this->constructorConductor($con);
+            return true;
         }else{
-            return null;
+            return false;
         }
+    }
+
+    public function ocupado(){
+        global $baseDatos;
+        $id_c = $this->getIdC();
+        $sql = "UPDATE `conductores` SET `estado` = 'OCUPADO' WHERE `conductores`.`id_c` = '$id_c'";
+        $res = $baseDatos->query($sql);
+        return $res;
     }
 
     public function verificarDatos($datPOST, $datFILE){

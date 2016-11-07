@@ -36,13 +36,14 @@ class Perfil_Controller
             $tp1->newBlock("tarjetaViaje");
             foreach ($lista as $res) {
                 $conductor = new Conductor();
-                $conductor->conductor_id($res->getIdC());
+                $con = $conductor->conductor_id($res->getIdC());
                 $viaje = new Viaje();
                 $viaje->dat_Viaje($res->getIdViaje());
                 $combi = new Combi();
                 $combi->dat_combi($res->getIdCombi());
                 $tp1->assign("destino", $viaje->getDestino());
-                $tp1->assign("imagen", $conductor->getFotoPerfil());
+                $tp1->assign("id_cond",$con->getIdC());
+                $tp1->assign("imagen", $con->getFotoPerfil());
                 $tp1->assign("origen", $viaje->getOrigen());
                 $tp1->assign("fecha", $res->getFecha());
                 $tp1->assign("hora", $res->getHora());
@@ -65,5 +66,21 @@ class Perfil_Controller
         } else {
             header('Location: index.php?alerta=UpdateMal');
         }
+    }
+
+    public function conductor()
+    {
+        $con = new Conductor(); //PIDO LOS DATOS DEL USUARIO
+        $con = $con->conductor_id($_GET["id"]);
+        $tp1 = new TemplatePower("template/perfil.html");
+        $tp1->prepare();
+        $tp1->gotoBlock("_ROOT");
+
+        //VALORES DE LA PAGINA
+        $tp1->assign("nombre_usuario", $con->getNombre() . " " . $con->getApellido());
+        $tp1->assign("imagen_pasajero", $con->getFotoPerfil());
+        $tp1->assign("descripcion","Telefono: ".$con->getTelefono()."   Correo: ".$con->getCorreo());
+
+        return $tp1->getOutputContent();
     }
 }

@@ -14,6 +14,9 @@
                 <h1 class="text-centrado">{nombre_usuario}</h1>
                 <h1 class=" text-centrado">{tipo_usuario}</h1>
             </div>
+            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                <h4 class="text-centrado">{descripcion}</h4>
+            </div>
             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 text-centrado">
 
                 <!--BOTÓN EDITAR PERFIL-->
@@ -103,13 +106,13 @@
 
             <!--TARJETA QUE MUESTRA LA INFORMACIÓN DE UN VIAJE REALIZADO-->
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="row contenedor-viaje margen"> //ESTADO PUEDE SER alert-success O alert-danger
+                <div class="row contenedor-viaje margen">
                     <div class="row borde-abajo">
                         <div class="col-sm-9 col-xs-7">
                             <h2 class="font-titulo">{destino}</h2>
                         </div>
                         <div class="col-sm-3 col-xs-5">
-                            <div><a href="#"><img src="{imagen}" class="img-perfil-viaje img-centrdo"
+                            <div><a href="index.php?action=Perfil::conductor&id={id_cond}"><img src="{imagen}" class="img-perfil-viaje img-centrdo"
                                       alt="conductor"></a></div>
                         </div>
                     </div>

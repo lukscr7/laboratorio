@@ -41,6 +41,22 @@ class Menu_Controller{
         "SinDatos" => array(
             "mensaje" => "Para registrarse debe llenar el formulario, Gracias",
             "condicion" => "Info"
+        ),
+        "noCondLibre" => array(
+            "mensaje" => "Por el momento no tenemos ningun Conductor disponible.",
+            "condicion" => "Info"
+        ),
+        "noCombiLibre" => array(
+            "mensaje" => "Por el momento no tenemos ninguna Combi disponible.",
+            "condicion" => "Info"
+        ),
+        "ErrorInsert" => array(
+            "mensaje" => "Se produjo un error al Insertar.",
+            "condicion" => "Error"
+        ),
+        "Reservado" => array(
+            "mensaje" => "Se reservo con Exito.",
+            "condicion" => "Correcto"
         )
     );
 

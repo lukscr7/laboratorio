@@ -83,11 +83,51 @@ class Combi{
     }
 
     /**
+     * Consulta si tiene algún Conductor la Empresa con id_e
+     * @return bool
+     */
+    public function existeCombi(){
+        global $baseDatos;
+        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `combi`");
+        $res = $results->fetch_assoc();
+        if ($res["cant"] != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * asigna a un Combi para un Viaje
+     * @return bool
+     */
+    public function asignar($silla){
+        global $baseDatos;
+        if ($this->existeCombiLibre()){
+            $sql = "SELECT * FROM combi WHERE `estado` = 'LIBRE' AND `cant_asientos` = '$silla'";
+            $resultado = $baseDatos->query($sql);
+            $con = $resultado->fetch_assoc();
+            $this->constructorCombi($con);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function ocupado(){
+        global $baseDatos;
+        $id_combi = $this->getIdCombi();
+        $sql = "UPDATE `combi` SET `estado` = 'OCUPADO' WHERE `combi`.`id_combi` = '$id_combi'";
+        $res = $baseDatos->query($sql);
+        return $res;
+    }
+
+    /**
      * @return Combi[]|null
      */
     public function listaCombis(){
         global $baseDatos;
-        if ($this-$this->existeCombiID()){
+        if ($this->existeCombi()){
             $sql = "SELECT * FROM `combis`";
             $arrayCombis = array();
             $resultado = $baseDatos->query($sql);

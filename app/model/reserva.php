@@ -35,9 +35,23 @@ class Reserva
     }
 
 
-    public function insert()
+    /**
+     * @param $user_id
+     * @param $id_c
+     * @param $id_viaje
+     * @param $id_combi
+     * @param $costo
+     * @param $fecha
+     * @param $hora
+     * @return bool
+     */
+    public function insert($user_id, $id_c, $id_viaje, $id_combi, $costo, $fecha, $hora)
     {
-
+        global $baseDatos;
+        $sql = "INSERT INTO `reservas` (`user_id`, `id_c`, `id_viaje`, `id_combi`, `costo`, `fecha`, `hora`) 
+                VALUES ('$user_id', '$id_c', '$id_viaje', '$id_combi', '$costo', '$fecha', '$hora')";
+        $result = $baseDatos->query($sql);
+        return $result;
     }
 
     /**

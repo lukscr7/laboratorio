@@ -7,64 +7,56 @@
  */
 class Viaje
 {
-    //`user_id_p``id_c``origen``destino``tiempo_origen``tiempo_destino``costo``fecha_hora``id_forma_pago``id_viaje``num_auto`
-    private $user_id_p;
-    private $id_c;
+    //`id_viaje``origen``destino``monto_basico`
+    private $id_viaje;
     private $origen;
     private $destino;
-    private $tiempo_origen;
-    private $tiempo_destino;
-    private $costo;
-    private $fecha_hora;
-    private $id_forma_pago;
-    private $id_viaje;
+    private $monto_basico;
 
     /**
      * Viaje constructor.
-     * @param $user_id_p
-     * @param $id_c
-     * @param $origen
-     * @param $destino
-     * @param $tiempo_origen
-     * @param $tiempo_destino
-     * @param $costo
-     * @param $fecha_hora
-     * @param $id_forma_pago
-     * @param $id_viaje
-     * @return Viaje
+     * @param $array
      */
-
-    public function newViaje($user_id_p, $id_c, $origen, $destino, $tiempo_origen, $tiempo_destino, $costo, $fecha_hora, $id_forma_pago, $id_viaje)
+    private function constructorViaje($array)
     {
-        $this->user_id_p = $user_id_p;
-        $this->id_c = $id_c;
-        $this->origen = $origen;
-        $this->destino = $destino;
-        $this->tiempo_origen = $tiempo_origen;
-        $this->tiempo_destino = $tiempo_destino;
-        $this->costo = $costo;
-        $this->fecha_hora = $fecha_hora;
-        $this->id_forma_pago = $id_forma_pago;
-        $this->id_viaje = $id_viaje;
-        return $this;
+        $this->id_viaje = $array["id_viaje"];
+        $this->origen = $array["origen"];
+        $this->destino = $array["destino"];
+        $this->monto_basico = $array["monto_basico"];
     }
-                                    //CONTINUAR
+
     /**
-     * @param $user_id
-     * @return mixed
+     * Devuelve un Array de los Viajes que tenemos.
+     * @return Viaje[]|null
      */
-    public function listaViajes($user_id)
+    public function listaViajes()
     {
         global $baseDatos;
-        $sql = "SELECT * FROM `viajes` WHERE `user_id_p` = '$user_id'";
-        $result = $baseDatos->query($sql);
-        return $result->fetch_all(MYSQLI_ASSOC);
-
+        if ($this->existeViaje()){
+            $sql = "SELECT * FROM `viajes`";
+            $arrayUsuarios = array();
+            $resultado = $baseDatos->query($sql);
+            $arrayConsulta = $resultado->fetch_all(MYSQLI_ASSOC);
+            foreach ($arrayConsulta as $res){
+                $viaje = new Viaje();
+                $viaje->constructorViaje($res);
+                $arrayUsuarios[] = $viaje;
+            }
+            return $arrayUsuarios;
+        }else{
+            return null;
+        }
     }
 
-    public function hayViajes($user_id){
+    /**
+     * Verifica si tenemos Viajes
+     * true = Si!   --   false = No :C
+     * @return bool
+     */
+    public function existeViaje(){
         global $baseDatos;
-        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM usuario WHERE user_id = '$user_id'");
+        $sql = "SELECT COUNT(*) AS cant FROM `viajes`";
+        $results = $baseDatos->query($sql);
         $res = $results->fetch_assoc();
         if ($res["cant"] == 0){
             return false;
@@ -72,4 +64,69 @@ class Viaje
             return true;
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIdViaje()
+    {
+        return $this->id_viaje;
+    }
+
+    /**
+     * @param mixed $id_viaje
+     */
+    public function setIdViaje($id_viaje)
+    {
+        $this->id_viaje = $id_viaje;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrigen()
+    {
+        return $this->origen;
+    }
+
+    /**
+     * @param mixed $origen
+     */
+    public function setOrigen($origen)
+    {
+        $this->origen = $origen;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDestino()
+    {
+        return $this->destino;
+    }
+
+    /**
+     * @param mixed $destino
+     */
+    public function setDestino($destino)
+    {
+        $this->destino = $destino;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMontoBasico()
+    {
+        return $this->monto_basico;
+    }
+
+    /**
+     * @param mixed $monto_basico
+     */
+    public function setMontoBasico($monto_basico)
+    {
+        $this->monto_basico = $monto_basico;
+    }
+
 }

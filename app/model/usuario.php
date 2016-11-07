@@ -18,10 +18,10 @@ class Usuario{
     private $bandera;
 
     /**
-     * Crea a un nuevo objeto Usuario a partir de una consulta a la Base de Datos.
+     * Asigna los datos al objeto Usuario a partir de una consulta a la Base de Datos.
      * @param $array
      */
-    public function constructorUsuario($array)
+    private function constructorUsuario($array)
     {
         $this->user_id = $array["user_id"];
         $this->pass = $array["pass"];

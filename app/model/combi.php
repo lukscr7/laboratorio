@@ -128,10 +128,10 @@ class Combi{
     public function listaCombis(){
         global $baseDatos;
         if ($this->existeCombi()){
-            $sql = "SELECT * FROM `combis`";
+            $sql = "SELECT * FROM `combi`";
             $arrayCombis = array();
             $resultado = $baseDatos->query($sql);
-            $arrayConsulta = $resultado->fetch_array(MYSQLI_ASSOC);
+            $arrayConsulta = $resultado->fetch_all(MYSQLI_ASSOC);
             foreach ($arrayConsulta as $res){
                 $combi = new Combi();
                 $combi->constructorCombi($res);

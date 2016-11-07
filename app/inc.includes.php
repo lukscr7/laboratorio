@@ -13,13 +13,13 @@ include("controller/ingreso.php");
 include("controller/perfil.php");
 include("controller/menu.php");
 include("controller/login.php");
+include("controller/reservas.php");
 
 include ("model/usuario.php");
 include("model/combi.php");
 include ("model/conductor.php");
-include ("model/empresa.php");
 include ("model/viaje.php");
-include ("model/lugar.favoritos.php");
+include ("model/reserva.php");
 
 
 ?>

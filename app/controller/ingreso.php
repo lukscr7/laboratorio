@@ -10,8 +10,8 @@ class Ingreso_Controller{
     public static function main(){
 
         if (isset($_SESSION["usuario"])){
-            $perfil = new Perfil_Controller();
-            $webapp = $perfil->cliente();
+            $reserva = new Reserva_Controller();
+            $webapp = $reserva->formReserva();
         }else{
             $tpl = new TemplatePower("template/login.html");
             $tpl->prepare();

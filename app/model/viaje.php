@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: dario
+ * User: darioflores
  * Date: 31/10/2016
  * Time: 23:56
  */
@@ -23,6 +23,27 @@ class Viaje
         $this->origen = $array["origen"];
         $this->destino = $array["destino"];
         $this->monto_basico = $array["monto_basico"];
+    }
+
+    /**
+     * Trae todos los datos de un Usuario user_id de la Base de Datos.
+     * @param $id_viaje
+     * @return bool
+     */
+    public function dat_Viaje($id_viaje){
+        global $baseDatos;
+        if ($this->existeViajeID($id_viaje)){
+            $sql = "SELECT * FROM `viajes` WHERE `id_viaje` = '$id_viaje'";
+            $resultado = $baseDatos->query($sql);
+            if ($resultado != false){
+                $this->constructorViaje($resultado->fetch_assoc());
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -56,6 +77,23 @@ class Viaje
     public function existeViaje(){
         global $baseDatos;
         $sql = "SELECT COUNT(*) AS cant FROM `viajes`";
+        $results = $baseDatos->query($sql);
+        $res = $results->fetch_assoc();
+        if ($res["cant"] == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /**
+     * Verifica si tenemos Viajes
+     * true = Si!   --   false = No :C
+     * @return bool
+     */
+    public function existeViajeID($id_viaje){
+        global $baseDatos;
+        $sql = "SELECT COUNT(*) AS cant FROM `viajes` WHERE `id_viaje` = '$id_viaje'";
         $results = $baseDatos->query($sql);
         $res = $results->fetch_assoc();
         if ($res["cant"] == 0){

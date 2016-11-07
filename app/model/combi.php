@@ -7,80 +7,73 @@
  */
 
 class Combi{
-    //`id_auto``id_e``patente_auto``num_remis_auto``marca_auto``modelo``color``tamaño`
-
-    private $id_auto;
-    private $id_e;
+    //`id_combi``patente``marca``modelo``color``cant_asientos``estado`
+    private $id_combi;
     private $patente;
-    private $num_remis;
     private $marca;
     private $modelo;
     private $color;
-    private $tamaño;
+    private $cant_asientos;
+    private $estado;
 
     /**
      * Crea un Objeto Auto a partir de un array que surge de una consulta a la base de datos.
      * @param $array
      */
-    public function constructoAuto($array)
+    public function constructorCombi($array)
     {
-        $this->id_auto = $array["id_auto"];
-        $this->id_e = $array["id_e"];
+        $this->id_combi = $array["id_combi"];
         $this->patente = $array["patente"];
-        $this->num_remis = $array["num_remis"];
         $this->marca = $array["marca"];
         $this->modelo = $array["modelo"];
         $this->color = $array["color"];
-        $this->tamaño = $array["tamaño"];
+        $this->cant_asientos = $array["cant_asientos"];
+        $this->estado = $array["estado"];
     }
 
     /**
-     * retorna una lista de los autos que tiene una empresa $id_e
-     * @param $id_e
-     * @return Auto[]|null
+     * Trae todos los datos de un Usuario user_id de la Base de Datos.
+     * @param $id_combi
+     * @return bool
      */
-    public function autos_empresa($id_e){
+    public function dat_combi($id_combi){
         global $baseDatos;
-        $autos_empresa = array();
-        //PREGUNTAR SI EXISTE ALGUN AUTO ANTES DE PEDIRLOS SINO PRODUCE ERROR
-        if ($this->existeAutoEmpresa($id_e)){
-            $sql = "SELECT * FROM autos WHERE id_e = '$id_e'";
-            $result = $baseDatos->query($sql);
-            $autos = $result->fetch_all(MYSQLI_ASSOC);
-            foreach ($autos as $res){
-                $auto = new Auto();
-                $auto->constructoAuto($res);//array de Auto que tiene una empresa
-                $autos_empresa[] = $auto;
+        if ($this->existeCombiID($id_combi)){
+            $sql = "SELECT * FROM `combi` WHERE `id_combi` = '$id_combi'";
+            $resultado = $baseDatos->query($sql);
+            if ($resultado != false){
+                $this->constructorCombi($resultado->fetch_assoc());
+                return true;
+            }else{
+                return false;
             }
-            return $autos_empresa;
         }else{
-            return null;
+            return false;
         }
     }
 
     /**
-     * Genera un Objeto Auto a partir del id_auto
-     * @param $id_auto
-     * @return Auto
+     * Consulta si tiene algún Conductor la Empresa con id_e
+     * @return bool
      */
-    public function autoID($id_auto){
+    public function existeCombiLibre(){
         global $baseDatos;
-        $auto = new Auto();
-        $sql = "SELECT * FROM `autos` WHERE `id_auto` = '$id_auto'";
-        $res = $baseDatos->query($sql);
-        $array = $res->fetch_assoc();
-        $auto->constructoAuto($array);
-        return $auto;
+        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `combi` WHERE `estado` = 'LIBRE'");
+        $res = $results->fetch_assoc();
+        if ($res["cant"] != 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
-     * Usada para saber si la Empresa id_e tiene algún Auto
-     * @param $id_e
+     * Consulta si tiene algún Conductor la Empresa con id_e
      * @return bool
      */
-    public function existeAutoEmpresa($id_e){
+    public function existeCombiID($id_combi){
         global $baseDatos;
-        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `autos` WHERE `id_e` = '$id_e'");
+        $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `combi` WHERE `id_combi` = '$id_combi'");
         $res = $results->fetch_assoc();
         if ($res["cant"] != 0){
             return true;
@@ -92,33 +85,17 @@ class Combi{
     /**
      * @return mixed
      */
-    public function getIdAuto()
+    public function getIdCombi()
     {
-        return $this->id_auto;
+        return $this->id_combi;
     }
 
     /**
-     * @param mixed $id_auto
+     * @param mixed $id_combi
      */
-    public function setIdAuto($id_auto)
+    public function setIdCombi($id_combi)
     {
-        $this->id_auto = $id_auto;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdE()
-    {
-        return $this->id_e;
-    }
-
-    /**
-     * @param mixed $id_e
-     */
-    public function setIdE($id_e)
-    {
-        $this->id_e = $id_e;
+        $this->id_combi = $id_combi;
     }
 
     /**
@@ -135,22 +112,6 @@ class Combi{
     public function setPatente($patente)
     {
         $this->patente = $patente;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNumRemis()
-    {
-        return $this->num_remis;
-    }
-
-    /**
-     * @param mixed $num_remis
-     */
-    public function setNumRemis($num_remis)
-    {
-        $this->num_remis = $num_remis;
     }
 
     /**
@@ -204,17 +165,33 @@ class Combi{
     /**
      * @return mixed
      */
-    public function getTamaño()
+    public function getCantAsientos()
     {
-        return $this->tamaño;
+        return $this->cant_asientos;
     }
 
     /**
-     * @param mixed $tamaño
+     * @param mixed $cant_asientos
      */
-    public function setTamaño($tamaño)
+    public function setCantAsientos($cant_asientos)
     {
-        $this->tamaño = $tamaño;
+        $this->cant_asientos = $cant_asientos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * @param mixed $estado
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
     }
 
 }

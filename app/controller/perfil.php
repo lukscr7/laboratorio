@@ -49,6 +49,7 @@ class Perfil_Controller
                 $tp1->assign("hora", $res->getHora());
                 $tp1->assign("asientos", $combi->getCantAsientos());
                 $tp1->assign("costo", $res->getCosto());
+                $tp1->assign("id", $res->getIdReserva());
             }
         } else {
             $tp1->newBlock("notarjetaViaje");

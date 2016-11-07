@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: darioflores
  * Date: 27/10/2016
  * Time: 03:20 PM
  */
-
-class Combi{
+class Combi
+{
     //`id_combi``patente``marca``modelo``color``cant_asientos``estado`
     private $id_combi;
     private $patente;
@@ -36,18 +37,19 @@ class Combi{
      * @param $id_combi
      * @return bool
      */
-    public function dat_combi($id_combi){
+    public function dat_combi($id_combi)
+    {
         global $baseDatos;
-        if ($this->existeCombiID($id_combi)){
+        if ($this->existeCombiID($id_combi)) {
             $sql = "SELECT * FROM `combi` WHERE `id_combi` = '$id_combi'";
             $resultado = $baseDatos->query($sql);
-            if ($resultado != false){
+            if ($resultado != false) {
                 $this->constructorCombi($resultado->fetch_assoc());
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -56,13 +58,14 @@ class Combi{
      * Consulta si tiene algún Conductor la Empresa con id_e
      * @return bool
      */
-    public function existeCombiLibre(){
+    public function existeCombiLibre()
+    {
         global $baseDatos;
         $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `combi` WHERE `estado` = 'LIBRE'");
         $res = $results->fetch_assoc();
-        if ($res["cant"] != 0){
+        if ($res["cant"] != 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -71,13 +74,14 @@ class Combi{
      * Consulta si tiene algún Conductor la Empresa con id_e
      * @return bool
      */
-    public function existeCombiID($id_combi){
+    public function existeCombiID($id_combi)
+    {
         global $baseDatos;
         $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `combi` WHERE `id_combi` = '$id_combi'");
         $res = $results->fetch_assoc();
-        if ($res["cant"] != 0){
+        if ($res["cant"] != 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -86,13 +90,14 @@ class Combi{
      * Consulta si tiene algún Conductor la Empresa con id_e
      * @return bool
      */
-    public function existeCombi(){
+    public function existeCombi()
+    {
         global $baseDatos;
         $results = $baseDatos->query("SELECT COUNT(*) AS cant FROM `combi`");
         $res = $results->fetch_assoc();
-        if ($res["cant"] != 0){
+        if ($res["cant"] != 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -101,20 +106,22 @@ class Combi{
      * asigna a un Combi para un Viaje
      * @return bool
      */
-    public function asignar($silla){
+    public function asignar($silla)
+    {
         global $baseDatos;
-        if ($this->existeCombiLibre()){
+        if ($this->existeCombiLibre()) {
             $sql = "SELECT * FROM combi WHERE `estado` = 'LIBRE' AND `cant_asientos` = '$silla'";
             $resultado = $baseDatos->query($sql);
             $con = $resultado->fetch_assoc();
             $this->constructorCombi($con);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function ocupado(){
+    public function ocupado()
+    {
         global $baseDatos;
         $id_combi = $this->getIdCombi();
         $sql = "UPDATE `combi` SET `estado` = 'OCUPADO' WHERE `combi`.`id_combi` = '$id_combi'";
@@ -122,25 +129,48 @@ class Combi{
         return $res;
     }
 
+    public function libre()
+    {
+        global $baseDatos;
+        $id_combi = $this->getIdCombi();
+        $sql = "UPDATE `combi` SET `estado` = 'LIBRE' WHERE `combi`.`id_combi` = '$id_combi'";
+        $res = $baseDatos->query($sql);
+        return $res;
+    }
+
     /**
      * @return Combi[]|null
      */
-    public function listaCombis(){
+    public function listaCombis()
+    {
         global $baseDatos;
-        if ($this->existeCombi()){
+        if ($this->existeCombi()) {
             $sql = "SELECT * FROM `combi`";
             $arrayCombis = array();
             $resultado = $baseDatos->query($sql);
             $arrayConsulta = $resultado->fetch_all(MYSQLI_ASSOC);
-            foreach ($arrayConsulta as $res){
+            foreach ($arrayConsulta as $res) {
                 $combi = new Combi();
                 $combi->constructorCombi($res);
                 $arrayCombis[] = $combi;
             }
             return $arrayCombis;
-        }else{
+        } else {
             return null;
         }
+    }
+
+    /**
+     * Da de BAJA al Usuario referenciado.
+     * @return bool
+     */
+    public function baja()
+    {
+        global $baseDatos;
+        $id_combi = $this->getIdCombi();
+        $sql = "DELETE FROM `combi` WHERE `combi`.`id_combi` = '$id_combi'";
+        $res = $baseDatos->query($sql);
+        return $res;
     }
 
     /**

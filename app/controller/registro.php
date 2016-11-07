@@ -19,7 +19,7 @@ class Registros_Controller
         if ($lista != null) {
             foreach ($lista as $res) {
                 $tp1->newBlock("body");
-                $tp1->assign("id_c", $res->getUserId());
+                $tp1->assign("user_id", $res->getUserId());
                 $tp1->assign("pass", $res->getPass());
                 $tp1->assign("nombre", $res->getNomUs());
                 $tp1->assign("apellido", $res->getApeUs());

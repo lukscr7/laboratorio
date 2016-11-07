@@ -207,6 +207,19 @@ class Usuario
     }
 
     /**
+     * Hace ADMIN al Usuario referenciado.
+     * @return bool
+     */
+    public function hacerAdmin(){
+        global $baseDatos;
+        $user_id = $this->getUserId();
+        $sql = "UPDATE `usuarios` SET `permisos` = 'ADMIN' WHERE `usuarios`.`user_id` = '$user_id'";
+        $res = $baseDatos->query($sql);
+        return $res;
+    }
+
+
+    /**
      * @return mixed
      */
     public function getUserId()

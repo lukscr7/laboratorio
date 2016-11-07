@@ -149,8 +149,8 @@ class Combi{
      */
     public function baja(){
         global $baseDatos;
-        $user_id = $this->getIdCombi();
-        $sql = "DELETE FROM `usuarios` WHERE `usuarios`.`user_id` = '$user_id'";
+        $id_combi = $this->getIdCombi();
+        $sql = "DELETE FROM `combi` WHERE `combi`.`id_combi` = '$id_combi'";
         $res = $baseDatos->query($sql);
         return $res;
     }

@@ -169,6 +169,18 @@ class Conductor{
     }
 
     /**
+     * Da de BAJA al Usuario referenciado.
+     * @return bool
+     */
+    public function baja(){
+        global $baseDatos;
+        $id_c = $this->getIdC();
+        $sql = "DELETE FROM `conductores` WHERE `conductores`.`id_c` = '$id_c'";
+        $res = $baseDatos->query($sql);
+        return $res;
+    }
+
+    /**
      * @return mixed
      */
     public function getIdC()

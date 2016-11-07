@@ -96,12 +96,12 @@
                         <!-- titulo - Registro -->
                         <h3 class="modal-title" align="center">Registrate, y accede a todos los beneficios. </h3>
                     </div>
-                    <form name="formulario" id="formulario" novalidate="" action="index.php?action=Login::registrarUsuario" method="POST" >
+                    <form name="formulario" id="formulario" novalidate="" action="index.php?action=Login::registrarUsuario" method="post" >
                         
                     <!-- ventana contenido -->
                     <div class="modal-body">
-                        <label>Nombre</label><input type="text" id="nombre_perfil" name="nombre_perfil" class="form-control" placeholder="Nombre"><br>
-                        <label>Apellido</label><input type="text" id="apellido_perfil" name="apellido_perfil" class="form-control" placeholder="Apellido"><br>
+                        <label>Nombre</label><input type="text" id="nombre_perfil" name="nombre_perfil" class="form-control" placeholder="Nombre" required><br>
+                        <label>Apellido</label><input type="text" id="apellido_perfil" name="apellido_perfil" class="form-control" placeholder="Apellido" required><br>
                         <label>Nombre de Usuario</label>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">@</span>

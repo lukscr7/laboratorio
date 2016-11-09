@@ -17,6 +17,8 @@ include("controller/administrador.php");
 include("controller/reservas.php");
 include("controller/registro.php");
 include ("controller/modificar.php");
+include ("controller/baja.php");
+
 
 include("model/usuario.php");
 include("model/combi.php");

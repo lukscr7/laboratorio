@@ -46,6 +46,14 @@ class Viaje
         }
     }
 
+    public function baja(){
+        global $baseDatos;
+        $user_id = $this->getIdViaje();
+        $sql = "DELETE FROM `viajes` WHERE `viajes`.`id_viaje` = '$user_id'";
+        $res = $baseDatos->query($sql);
+        return $res;
+    }
+
     /**
      * Devuelve un Array de los Viajes que tenemos.
      * @return Viaje[]|null

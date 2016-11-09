@@ -42,8 +42,8 @@
                             </form-->
                         </td>
                         <td>
-                            <form method="post" action="#">
-                                <input value="{id_c}" type="hidden" name="id_viaje">
+                            <form method="post" action="index.php?action=Baja::bajaConductor">
+                                <input value="{id_c}" type="hidden" name="id_c">
                                 <button type="submit" class="btn btn-warning">Baja</button>
                             </form>
                         </td>
@@ -84,7 +84,7 @@
                                 <label>Apellido</label><input type="text" id="apellido_con" name="apellido_con"
                                                               class="form-control" placeholder="Apellido" required><br>
                                 <label>Telefono</label><input type="number" id="telefono_con" name="telefono_con"
-                                                              class="form-control" placeholder="Contrase&ntilde;a"
+                                                              class="form-control" placeholder="telefono"
                                                               required><br>
                                 <label>Correo</label><input type="email" id="correo_perfil" name="correo_con"
                                                             class="form-control" placeholder="ejemplo@dominio" required><br>
